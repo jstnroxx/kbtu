@@ -1,0 +1,92 @@
+body {
+    background-color: rgb(242, 244, 247);
+}
+div {
+    margin: 5px;
+}
+#logo {
+    place-self: center;
+}
+#form-div {
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    display: inline-block;
+    padding: 15px;
+    margin-left: 500px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+input {
+    display: block;
+    outline: none;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(221, 223, 226);
+    width: 272px;
+}
+input:focus {
+    border-color: rgb(8, 102, 255);
+    opacity: 0.7;
+    box-shadow: 0 0 0 2px rgb(231, 243, 255);
+    caret-color: rgb(8 102 255);
+}
+button {
+    border: none;
+    font-weight: bold;
+    font-size: 17px;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.25s, opacity 0.2s;
+}
+#login-button-div {
+    width: 100%;
+    margin: 0;
+}
+#login-button {
+    background-color: rgb(8, 102, 255);
+    width: 100%;
+    height: 37px;
+}
+button:hover {
+    opacity: 0.9;
+}
+#login-button:active {
+    background-color: rgb(7, 84, 206);
+}
+#forgot-password-div {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+#forgot-password {
+    color: rgb(8, 102, 255);
+    text-decoration: none;
+    font-size: 12px;
+}
+#forgot-password:hover {
+    text-decoration: underline;
+}
+#hr-div {
+    border-bottom-color: rgb(218, 221, 225);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    margin-bottom: 15px;
+}
+#new-account-div {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+#new-account-button {
+    background-color: rgb(66, 183, 42);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#new-account-button:active {
+    background-color: rgb(52, 145, 33);
+}
