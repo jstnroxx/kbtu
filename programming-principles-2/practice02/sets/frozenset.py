@@ -1,0 +1,17 @@
+# frozenset is an immutable version of a set.
+# Use the frozenset() constructor to create a frozenset from any iterable.
+x = frozenset({"apple", "banana", "cherry"})
+print(x)
+print(type(x))
+
+# Being immutable means you cannot add or remove elements. However, frozensets support all non-mutating operations of sets.
+"""
+copy()	    	Returns a shallow copy	
+difference()    	-   	Returns a new frozenset with the difference	
+intersection()  	&   	Returns a new frozenset with the intersection	
+isdisjoint()	     	Returns whether two frozensets have an intersection	
+issubset()	    <= / <	    Returns True if this frozenset is a (proper) subset of another	
+issuperset()    	>= / >	    Returns True if this frozenset is a (proper) superset of another	
+symmetric_difference()	    ^	    Returns a new frozenset with the symmetric differences	
+union()	    |	    Returns a new frozenset containing the union
+"""
