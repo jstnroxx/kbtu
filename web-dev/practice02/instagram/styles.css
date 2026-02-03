@@ -1,0 +1,173 @@
+body {
+    font-family: "Roboto";
+    color: white;
+    background-color: rgb(200, 200, 200);
+}
+
+footer {
+    border-top-color: rgb(65, 78, 91);
+    border-top-width: 1px;
+    border-top-style: solid;
+
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 15vh;
+    box-sizing: border-box;
+    justify-self: center;
+
+    color: rgb(175, 175, 175);
+    text-decoration: none;
+    font-size: 12px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+a {
+    color: rgb(175, 175, 175);
+    text-decoration: none;
+    font-size: 12px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+li {
+    display: inline;
+    padding-left: 15px;
+}
+
+select {
+    appearance: none;
+    background-color: transparent;
+    background-image: url("media/arrow.svg");
+    background-repeat: no-repeat;
+    background-position: 50px 0;
+    border: none;
+    outline: none;
+    color: rgb(175, 175, 175);
+    margin: 0;
+    cursor: pointer;
+}
+
+option {
+    color: black;
+}
+
+.gradient {
+    background-image: linear-gradient(to right, #ff5c00, #ff0069, #d300c5);
+    color: transparent;
+    background-clip: text;
+}
+
+#container {
+    height: 75vh;
+    width: 100vw;
+    display: grid;
+}
+
+#logo-div, #showcase-div, footer {
+    background-color: rgb(12, 16, 20);
+}
+
+#logo-div, #showcase-div {
+    border-right-color: rgb(65, 78, 91);
+    border-right-width: 1px;
+    border-right-style: solid;
+}
+
+#logo-div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 15vh;
+    width: 60vw;
+    box-sizing: border-box;
+    padding-top: 40px;
+    padding-left: 45px;
+    z-index: 10;
+}
+
+#instagram-logo {
+    height: 75px;
+}
+
+#showcase-div {
+    border-bottom-color: rgb(65, 78, 91);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+
+    position: fixed;
+    left: 0;
+    top: 15vh;
+    width: 60vw;
+    height: 70vh;
+    box-sizing: border-box;
+}
+
+#showcase-title-div {
+    text-align: center;
+    width: 100%;
+    height: 20%;
+}
+
+#showcase-title {
+    display: inline;
+    font-size: 35px;
+    width: 100px;
+}
+
+#stories-img-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+}
+
+#stories-img {
+    width: 60%;
+    min-width: 350px;
+}
+
+#user-div {
+    background-color: rgb(24, 33, 38);
+    border-left-color: rgb(65, 78, 91);
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-bottom-color: rgb(65, 78, 91);
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 85vh;
+    width: 40vw;
+    box-sizing: border-box;
+}
+
+#showcase-title {
+    font-family: "Playwrite NZ Basic";
+    color: white;
+}
+
+#down-div {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#lang-list-div, #copyright-div {
+    display: inline-block;
+    align-content: center;
+}
+
