@@ -1,0 +1,316 @@
+body {
+    font-family: "Mona Sans";
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(31, 35, 40);
+    margin-right: 15px;
+}
+
+a:hover {
+    color: rgb(89, 99, 110);
+}
+
+.arrow {
+    position: relative;
+    transform: rotate(90deg);
+    fill: rgb(31, 35, 40);
+    vertical-align: middle;
+    transition: top 0.15s;
+}
+
+a:hover .arrow {
+    fill: rgb(89, 99, 110);
+    top: -5px;
+}
+
+.inline {
+    display: inline-block;
+}
+
+#nav-links-div {
+    display: flex;
+    align-items: center;
+}
+
+#other-links-div, #search-dashboard-div, #dashboard-div, #search-div, #vertical-rule-div {
+    display: inline-block;
+}
+
+#search-dashboard-div {
+    display: flex;
+    justify-content: center;
+}
+
+#vertical-rule-div {
+    border-right-color: rgb(209, 217, 224);
+    border-right-width: 1px;
+    border-right-style: solid;
+    height: 100%;
+    box-sizing: border-box;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#github-logo {
+    vertical-align: middle;
+    margin-right: 15px;
+}
+
+#three-cards-div {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 100px;
+}
+
+#search-div {
+    border: 1px solid rgb(209, 217, 224);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px;
+    padding-right: 5px;
+    cursor: pointer;
+}
+
+#slash-div {
+    color: rgb(209, 217, 224);
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 1px solid rgb(209, 217, 224);
+    border-radius: 3px;
+    font-size: 10px;
+}
+
+#inner-search-div {
+    display: flex;
+    align-items: center;
+}
+
+#search-placeholder {
+    display: inline;
+    margin: 0;
+    color: rgb(89, 99, 110);
+    font-size: 14px;
+    width: 175px;
+}
+
+#search-icon {
+    margin-right: 5px;
+    fill: rgb(209, 217, 224);
+}
+
+#dashboard-button {
+    background-color: white;
+    border: 1px solid rgb(209, 217, 224);
+    border-radius: 5px;
+    padding: 5px;
+    color: rgb(31, 35, 40);
+    box-sizing: border-box;
+    height: 32px;
+    cursor: pointer;
+    transition: color 0.15s;
+}
+
+#dashboard-button:hover {
+    color: rgb(89, 99, 110);
+}
+
+#hero-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#hero-title {
+    font-size: 64px;
+    font-weight: 800;
+    color: rgb(31, 35, 40);
+    margin-bottom: 0;
+    text-align: center;
+}
+
+#hero-desc {
+    font-size: 16px;
+    font-weight: 400;
+    max-width: 1050px;
+    color: rgb(89, 99, 110);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+#hero-button {
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    background-color: rgb(27, 31, 35);
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+    cursor: pointer;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    transition: box-shadow 0.25s, opacity 0.15s;
+}
+
+#hero-button:hover {
+    box-shadow: 0 3px 10px 3px rgba(0, 0, 0, 0.15);
+}
+
+#hero-button:active {
+    opacity: 0.85;
+}
+
+.card-template-div {
+    display: inline-block;
+    border: 2px solid rgb(209, 217, 224);
+    border-radius: 15px;
+    box-shadow: 0 3px 10px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-upper-div {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+.pricing-name-div, .pricing-desc-div, .price-div {
+    display: flex;
+    justify-content: center;
+}
+
+.pricing-name {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 0;
+}
+
+.pricing-desc {
+    margin-top: 0;
+    font-size: 14px;
+    color: rgb(89, 99, 110);
+    width: 175px;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.price {
+    color: rgb(89, 99, 110);
+    font-size: 16px;
+}
+
+.bold-price {
+    font-weight: 500;
+    color: black;
+    font-size: 24px;
+}
+
+sup {
+    position: relative;
+    top: -10px;
+}
+
+
+.card-lower-div {
+    background-color: rgb(246, 246, 246);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.pricing-button-div {
+    text-align: center;
+}
+
+#free-button {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid rgb(89, 99, 110);
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 60px;
+    padding-right: 60px;
+    transition: border-width 0.25s;
+    width: 300px;
+}
+
+#free-button:hover {
+    border-width: 3px;
+}
+
+#free-button:active {
+    background-color: rgb(232, 232, 232);
+}
+
+#team-button {
+    background-color: rgb(27, 31, 35);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 60px;
+    padding-right: 60px;
+    transition: opacity 0.15s;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+    width: 300px;
+}
+
+#team-button:hover {
+    opacity: 0.75;
+}
+
+#team-button:active {
+    opacity: 0.5;;
+}
+
+.lower-desc-div {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    align-items: center;
+    color: rgb(89, 99, 110);
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.addon-desc-div {
+    margin-top: 25px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    color: rgb(9, 105, 218);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+@media only screen and (max-width: 1100px) {
+    #search-div, #vertical-rule-div, #other-links-div {
+        display: none;
+    }
+
+    #hero-title {
+        font-size: 48px;
+    }
+}
