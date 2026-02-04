@@ -11,6 +11,12 @@ nav {
     padding-right: 10px;
 }
 
+h2 {
+    color: rgb(31, 35, 40);
+    font-weight: 800;
+    font-size: 64px;
+}
+
 sup {
     position: relative;
     top: -10px;
@@ -131,6 +137,93 @@ a:hover .arrow {
     font-size: 14px;
 }
 
+.second-card-template-div {
+    display: inline-block;
+    padding: 32px;
+    border: 1px solid rgb(89, 99, 110);
+    border-radius: 10px;
+    max-width: 325px;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.25s, scale 0.25s;
+    cursor: pointer;
+}
+
+.second-card-template-div:hover {
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.25);
+    scale: 1.05;
+}
+
+.second-card-template-div:hover .card-arrow {
+    display: none;
+}
+
+.second-card-template-div:hover .card-arrow-thin {
+    display: inline-block;
+}
+
+.card-title-div {
+    color: rgb(31, 35, 40);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.card-arrow {
+    display: inline-block;
+    position: relative;
+    left: 5px;
+    height: 16px;
+}
+
+.card-arrow-thin {
+    display: none;
+    position: relative;
+    transform: rotate(180deg);
+    height: 16px;
+    left: 5px;
+}
+
+.card-description-div {
+    color: rgb(89, 99, 110);
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.card-details-div {
+    color: rgb(31, 35, 40);
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+#six-cards-div {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    place-items: center;
+    margin-bottom: 25px;
+}
+
+#flexbox-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#new-label {
+    color: rgb(26, 127, 55);
+    border: 1px solid rgb(26, 127, 55);
+    padding: 5px;
+    border-radius: 15px;
+    font-size: 12px;
+}
+
+#additional-div {
+    text-align: center;
+}
+
 #starting-at-div {
     display: flex;
     justify-content: center;
@@ -140,7 +233,7 @@ a:hover .arrow {
     font-weight: 400;
     font-size: 14px;
     color: rgb(89, 99, 110);
-    border: 1px solid rgb(89, 99, 110);
+    border: 1px solid rgb(209, 217, 224);
     border-radius: 10px;
     padding: 5px;
     padding-left: 10px;
@@ -387,6 +480,10 @@ a:hover .arrow {
     }
 
     #hero-title {
+        font-size: 48px;
+    }
+
+    h2 {
         font-size: 48px;
     }
 }
