@@ -11,6 +11,11 @@ nav {
     padding-right: 10px;
 }
 
+sup {
+    position: relative;
+    top: -10px;
+}
+
 a {
     text-decoration: none;
     color: rgb(31, 35, 40);
@@ -36,6 +41,111 @@ a:hover .arrow {
 
 .inline {
     display: inline-block;
+}
+
+.card-template-div {
+    display: inline-block;
+    max-width: 400px;
+    min-width: 390px;
+    border: 2px solid rgb(209, 217, 224);
+    border-radius: 15px;
+    box-shadow: 0 3px 10px 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-upper-div {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 25px;
+    height: 250px;
+}
+
+.pricing-name-div, .pricing-desc-div, .price-div {
+    display: flex;
+    justify-content: center;
+}
+
+.pricing-name {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 0;
+}
+
+.pricing-desc {
+    margin-top: 0;
+    font-size: 14px;
+    color: rgb(89, 99, 110);
+    width: 175px;
+    text-align: center;
+    height: 50px;
+}
+
+.price {
+    color: rgb(89, 99, 110);
+    font-size: 16px;
+}
+
+.bold-price {
+    font-weight: 500;
+    color: black;
+    font-size: 24px;
+}
+
+.card-lower-div {
+    background-color: rgb(246, 246, 246);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 650px;
+}
+
+.pricing-button-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.undertext {
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.lower-desc-div {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    display: flex;
+    align-items: center;
+    color: rgb(89, 99, 110);
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.addon-desc-div {
+    margin-top: 25px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    color: rgb(9, 105, 218);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+#starting-at-div {
+    display: flex;
+    justify-content: center;
+}
+
+#starting-at {
+    font-weight: 400;
+    font-size: 14px;
+    color: rgb(89, 99, 110);
+    border: 1px solid rgb(89, 99, 110);
+    border-radius: 10px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0;
 }
 
 #nav-links-div {
@@ -68,9 +178,12 @@ a:hover .arrow {
 }
 
 #three-cards-div {
-    display: flex;
-    justify-content: space-evenly;
+    display: grid;
+    place-items: center ;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
     margin-top: 100px;
+    margin-bottom: 35px;
 }
 
 #search-div {
@@ -177,66 +290,6 @@ a:hover .arrow {
     opacity: 0.85;
 }
 
-.card-template-div {
-    display: inline-block;
-    border: 2px solid rgb(209, 217, 224);
-    border-radius: 15px;
-    box-shadow: 0 3px 10px 10px rgba(0, 0, 0, 0.15);
-}
-
-.card-upper-div {
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 15px;
-}
-
-.pricing-name-div, .pricing-desc-div, .price-div {
-    display: flex;
-    justify-content: center;
-}
-
-.pricing-name {
-    font-weight: bold;
-    font-size: 24px;
-    margin-bottom: 0;
-}
-
-.pricing-desc {
-    margin-top: 0;
-    font-size: 14px;
-    color: rgb(89, 99, 110);
-    width: 175px;
-    margin-bottom: 35px;
-    text-align: center;
-}
-
-.price {
-    color: rgb(89, 99, 110);
-    font-size: 16px;
-}
-
-.bold-price {
-    font-weight: 500;
-    color: black;
-    font-size: 24px;
-}
-
-sup {
-    position: relative;
-    top: -10px;
-}
-
-
-.card-lower-div {
-    background-color: rgb(246, 246, 246);
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-.pricing-button-div {
-    text-align: center;
-}
-
 #free-button {
     background-color: white;
     color: black;
@@ -249,14 +302,16 @@ sup {
     padding-left: 60px;
     padding-right: 60px;
     transition: border-width 0.25s;
-    width: 300px;
+    box-sizing: border-box;
+    height: 45px;
+    width: 100%;
 }
 
-#free-button:hover {
+#free-button:hover, #sales-button:hover {
     border-width: 3px;
 }
 
-#free-button:active {
+#free-button:active, #sales-button:active {
     background-color: rgb(232, 232, 232);
 }
 
@@ -273,36 +328,57 @@ sup {
     padding-right: 60px;
     transition: opacity 0.15s;
     background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
-    width: 300px;
+    box-sizing: border-box;
+    height: 45px;
+    width: 100%;
 }
 
-#team-button:hover {
+#team-button:hover, #trial-button:hover {
     opacity: 0.75;
 }
 
-#team-button:active {
+#team-button:active, #trial-button:active {
     opacity: 0.5;;
 }
 
-.lower-desc-div {
-    padding-top: 10px;
-    padding-bottom: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
+#pricing-buttons-div {
     display: flex;
+    justify-content: space-evenly;    
     align-items: center;
-    color: rgb(89, 99, 110);
-    font-weight: 700;
-    font-size: 14px;
 }
 
-.addon-desc-div {
-    margin-top: 25px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    color: rgb(9, 105, 218);
-    font-weight: 600;
-    font-size: 14px;
+#trial-button {
+    background-color: rgb(27, 31, 35);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: opacity 0.15s;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+    box-sizing: border-box;
+    height: 45px;
+    width: 40%;
+}
+
+#sales-button {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid rgb(89, 99, 110);
+    border-radius: 5px;
+    transition: border-width 0.25s;
+    box-sizing: border-box;
+    height: 45px;
+    width: 40%;
+}
+
+#included-div {
+    color: black;
+    font-weight: 400;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 @media only screen and (max-width: 1100px) {
