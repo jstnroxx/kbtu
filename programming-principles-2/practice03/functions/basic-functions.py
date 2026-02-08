@@ -25,20 +25,32 @@ def myFunction2():
 # (These are valid function names)
 
 # Functions can send data back to the code block that executed them by implementing "return" statement
-def get_data():
+def getData():
     return "your data"
 
-someData = get_data()
+someData = getData()
 print(someData)
 # (i.e. When the function reaches the "return" statement, it terminates and sends the resulting data back)
 # (p.s. If a function doesn't have a "return" statement, it returns "None" by default)
 
 # The primary use of functions is to write some piece of code once, to use it further in a more simple way without rewriting the whole thing many times
-def fahrenheit_to_celsius(fahrenheit):
+def fahrenheitToCelsius(fahrenheit):
     return (fahrenheit - 32) * 5 / 9
 
-print(fahrenheit_to_celsius(77))
-print(fahrenheit_to_celsius(95))
-print(fahrenheit_to_celsius(50))
+print(fahrenheitToCelsius(77))
+print(fahrenheitToCelsius(95))
+print(fahrenheitToCelsius(50))
+
+# We can also document a function by putting a "docstring" inside of it enclosed with three double quote symbols, and it will be returned by {functionName}.__doc__
+def fahrenheitToCelsiusDocumented(fahrenheit):
+    """
+    Docstring for fahrenheitToCelsius
+    
+    :param fahrenheit: Description
+    """
+    return (fahrenheit - 32) * 5 / 9
+
+print(fahrenheitToCelsius.__doc__)
+
 
 
