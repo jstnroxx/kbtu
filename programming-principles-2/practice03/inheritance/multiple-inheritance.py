@@ -33,3 +33,26 @@ c1.showX()
 c1.showY()
 c1.printFirst()
 c1.printSecond()
+
+# An abstract base class (ABC) is a blueprint for other classes that defines a common interface and forces subclasses to implement specific methods
+# In order to use it, we have to import the following
+from abc import ABC, abstractmethod
+
+# To create an abstract base class we set a parent of a class to "ABC"
+class Vehicle(ABC):
+    
+    #"@abstractmethod" before a method declaration forces all subclasses to override the following method
+    @abstractmethod
+    def startEngine(self):
+        pass
+    
+    # The following is a "concrete method" which provides this functionality to every subclass
+    def identifyItem(self):
+        print("It is a vehicle.")
+        
+class Motorcycle(Vehicle):
+    def startEngine(self):
+        print("Kickstarted the engine.")
+
+m1 = Motorcycle()
+m1.identifyItem()
