@@ -43,6 +43,16 @@ function updateTaskList() {
     TaskList.innerHTML = htmlTaskList;
 
     storeTaskList();
+
+    const CheckboxClass = document.querySelectorAll(".item-checkbox");
+    CheckboxClass.forEach(element => {
+    element.addEventListener("click", () => {
+        sessionTaskList[+element.getAttribute("data-no")].isChecked = element.checked;
+        console.log(sessionTaskList);
+        
+        updateTaskList();
+    });
+});
 };
 
 AddTaskButton.addEventListener("click", function(event) {
@@ -59,15 +69,6 @@ AddTaskButton.addEventListener("click", function(event) {
 
     AddTaskInput.value = "";
     updateTaskList();
-});
-
-const CheckboxClass = document.querySelectorAll(".item-checkbox");
-CheckboxClass.forEach(element => {
-    element.addEventListener("click", () => {
-        sessionTaskList[+element.getAttribute("data-no")].isChecked = element.checked;
-        
-        updateTaskList();
-    });
 });
 
 function removeTask(buttonElement) {
