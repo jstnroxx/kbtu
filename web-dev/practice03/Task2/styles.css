@@ -1,0 +1,148 @@
+body {
+    background-color: rgb(241, 242, 237);
+    font-family: "Google Sans", Arial;
+}
+
+header {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 50px;
+    border: 1px black solid;
+}
+
+main {
+    width: 50vw;
+    margin: auto;
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+p {
+    display: inline;
+}
+
+.item {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 5px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-checkbox-and-text {
+    display: flex;
+}
+
+.item-text {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.item-checkbox:checked ~ .item-text {
+    text-decoration: line-through;
+}
+
+.item:has(.item-checkbox:checked) {
+    opacity: 0.5;
+}
+
+.item-delete-button {
+    outline: none;
+    padding: 1px;
+    cursor: pointer;    
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: rgb(255, 212, 212);
+}
+
+.item-delete-button:hover {
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.15);
+}
+
+#header-title {
+    font-weight: 600;
+}
+
+#main-title {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+#add-task-input-div {
+    width: 80%;
+}
+
+#add-task-label {
+    position: relative;
+    top: -30px;
+    left: 5px;
+    pointer-events: none;
+    transition: font-size 0.15s, top 0.15s;
+}
+
+#add-task-input {
+    border: 1px black solid;
+    border-radius: 5px;
+    padding-top: 18px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+    height: 18px;
+    outline: none;
+}
+
+#add-task-button:hover,
+#add-task-input:hover,
+#add-task-input:focus {
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.15);
+}
+
+#add-task-input:focus ~ #add-task-label,
+#add-task-input:not(:placeholder-shown) ~ #add-task-label {
+    font-size: 11px;
+    top: -40px;
+}
+
+#add-task-button {
+    width: 15%;
+    color: black;
+    background-color: rgb(227, 246, 119);
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#add-task-button:active {
+    background-color: rgb(198, 214, 105);
+}
+
+
+
+
+
