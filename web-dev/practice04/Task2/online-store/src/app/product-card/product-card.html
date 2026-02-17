@@ -1,22 +1,74 @@
-<div class="product-card">
-    <div class="product-image-container">
-        <img class="product-image" src="iphone.jpg"/>
+<div class="flexbox" (mouseleave)="hideControls()">
+    <div>
+        <button class="product-thumbnail-arrow product-thumbnail-arrow-left" [style.visibility]="isThumbnailControl ? 'visible' : 'hidden'" (click)="previousThumbnail()">
+            <
+        </button>
     </div>
-    
-    <p class="product-title">
-        iPhone XXX
-    </p>
 
-    <p class="product-description">
-        Some really real iPhone XXX full description to fill the space. Here's the first sentence. And here is the second one.
-    </p>
+    <div class="product-card">
+        <div class="product-image-container" (mouseenter)="showControls()">
+            <img class="product-image" [src]="currentImagePath()" [alt]="productObject()?.name"/>
+        </div>
+        
+        <p class="product-title">
+            {{ productObject()?.name }}
+        </p>
 
-    <p class="product-price">
-        <sup>&#8376;&nbsp;</sup><span class="price-tag">9,999.99</span> <span class="price-currency">KZT</span>
-    </p>
+        <p class="product-description">
+            {{ productObject()?.description }}
+        </p>
 
-    <div class="product-buttons">
-        <button class="product-view-button">View</button>
-        <button class="product-share-button">Share</button>
+        <p class="product-price">
+            <sup>&#8376;&nbsp;</sup><span class="price-tag">{{ productObject()?.price | number: '3.2-2'}}</span>&nbsp;<span class="price-currency">KZT</span>
+        </p>
+
+        <div class="product-stars">
+            <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+                <path [attr.fill]="(productObject()?.rating ?? 0) > 0 ? 'orange' : 'gray'" d="M62.799,23.737c-0.47-1.399-1.681-2.419-3.139-2.642l-16.969-2.593L35.069,2.265
+                C34.419,0.881,33.03,0,31.504,0c-1.527,0-2.915,0.881-3.565,2.265l-7.623,16.238L3.347,21.096c-1.458,0.223-2.669,1.242-3.138,2.642
+                c-0.469,1.4-0.115,2.942,0.916,4l12.392,12.707l-2.935,17.977c-0.242,1.488,0.389,2.984,1.62,3.854
+                c1.23,0.87,2.854,0.958,4.177,0.228l15.126-8.365l15.126,8.365c0.597,0.33,1.254,0.492,1.908,0.492c0.796,0,1.592-0.242,2.269-0.72
+                c1.231-0.869,1.861-2.365,1.619-3.854l-2.935-17.977l12.393-12.707C62.914,26.68,63.268,25.138,62.799,23.737z"/>
+            </svg>
+            <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+                <path [attr.fill]="(productObject()?.rating ?? 0) > 1 ? 'orange' : 'gray'" d="M62.799,23.737c-0.47-1.399-1.681-2.419-3.139-2.642l-16.969-2.593L35.069,2.265
+                C34.419,0.881,33.03,0,31.504,0c-1.527,0-2.915,0.881-3.565,2.265l-7.623,16.238L3.347,21.096c-1.458,0.223-2.669,1.242-3.138,2.642
+                c-0.469,1.4-0.115,2.942,0.916,4l12.392,12.707l-2.935,17.977c-0.242,1.488,0.389,2.984,1.62,3.854
+                c1.23,0.87,2.854,0.958,4.177,0.228l15.126-8.365l15.126,8.365c0.597,0.33,1.254,0.492,1.908,0.492c0.796,0,1.592-0.242,2.269-0.72
+                c1.231-0.869,1.861-2.365,1.619-3.854l-2.935-17.977l12.393-12.707C62.914,26.68,63.268,25.138,62.799,23.737z"/>
+            </svg>
+            <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+                <path [attr.fill]="(productObject()?.rating ?? 0) > 2 ? 'orange' : 'gray'" d="M62.799,23.737c-0.47-1.399-1.681-2.419-3.139-2.642l-16.969-2.593L35.069,2.265
+                C34.419,0.881,33.03,0,31.504,0c-1.527,0-2.915,0.881-3.565,2.265l-7.623,16.238L3.347,21.096c-1.458,0.223-2.669,1.242-3.138,2.642
+                c-0.469,1.4-0.115,2.942,0.916,4l12.392,12.707l-2.935,17.977c-0.242,1.488,0.389,2.984,1.62,3.854
+                c1.23,0.87,2.854,0.958,4.177,0.228l15.126-8.365l15.126,8.365c0.597,0.33,1.254,0.492,1.908,0.492c0.796,0,1.592-0.242,2.269-0.72
+                c1.231-0.869,1.861-2.365,1.619-3.854l-2.935-17.977l12.393-12.707C62.914,26.68,63.268,25.138,62.799,23.737z"/>
+            </svg>
+            <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+                <path [attr.fill]="(productObject()?.rating ?? 0) > 3 ? 'orange' : 'gray'" d="M62.799,23.737c-0.47-1.399-1.681-2.419-3.139-2.642l-16.969-2.593L35.069,2.265
+                C34.419,0.881,33.03,0,31.504,0c-1.527,0-2.915,0.881-3.565,2.265l-7.623,16.238L3.347,21.096c-1.458,0.223-2.669,1.242-3.138,2.642
+                c-0.469,1.4-0.115,2.942,0.916,4l12.392,12.707l-2.935,17.977c-0.242,1.488,0.389,2.984,1.62,3.854
+                c1.23,0.87,2.854,0.958,4.177,0.228l15.126-8.365l15.126,8.365c0.597,0.33,1.254,0.492,1.908,0.492c0.796,0,1.592-0.242,2.269-0.72
+                c1.231-0.869,1.861-2.365,1.619-3.854l-2.935-17.977l12.393-12.707C62.914,26.68,63.268,25.138,62.799,23.737z"/>
+            </svg>
+            <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+                <path [attr.fill]="(productObject()?.rating ?? 0) > 4 ? 'orange' : 'gray'" d="M62.799,23.737c-0.47-1.399-1.681-2.419-3.139-2.642l-16.969-2.593L35.069,2.265
+                C34.419,0.881,33.03,0,31.504,0c-1.527,0-2.915,0.881-3.565,2.265l-7.623,16.238L3.347,21.096c-1.458,0.223-2.669,1.242-3.138,2.642
+                c-0.469,1.4-0.115,2.942,0.916,4l12.392,12.707l-2.935,17.977c-0.242,1.488,0.389,2.984,1.62,3.854
+                c1.23,0.87,2.854,0.958,4.177,0.228l15.126-8.365l15.126,8.365c0.597,0.33,1.254,0.492,1.908,0.492c0.796,0,1.592-0.242,2.269-0.72
+                c1.231-0.869,1.861-2.365,1.619-3.854l-2.935-17.977l12.393-12.707C62.914,26.68,63.268,25.138,62.799,23.737z"/>
+            </svg>
+        </div>
+
+        <div class="product-buttons">
+            <button class="product-view-button" (click)="redirectTo(productObject()?.link ?? '/')">View</button>
+            <button class="product-share-button" (click)="shareProduct()">Share</button>
+        </div>
+    </div>
+
+    <div>
+        <button class="product-thumbnail-arrow product-thumbnail-arrow-right" [style.visibility]="isThumbnailControl ? 'visible' : 'hidden'" (click)="nextThumbnail()">
+            >
+        </button>
     </div>
 </div>

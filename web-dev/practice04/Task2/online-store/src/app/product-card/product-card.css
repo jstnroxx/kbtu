@@ -1,3 +1,11 @@
+.flexbox {
+    display: flex;
+}
+
+.flexbox:hover {
+    scale: 1.025;
+}
+
 .product-card {
     border-radius: 50px;
     background-color: white;
@@ -7,10 +15,6 @@
     width: 300px;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.15);
     transition: scale 0.25s;
-}
-
-.product-card:hover {
-    scale: 1.025;
 }
 
 .product-image-container {
@@ -34,16 +38,26 @@
 .product-description {
     padding-left: 10px;
     padding-right: 10px;
+    height: 77px;
 }
 
 .product-price {
     color: green;
     font-weight: bold;
     padding-left: 10px;
+    margin-bottom: 8px;
+}
+
+.product-stars {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1px;
+    padding-left: 10px;
+    margin-bottom: 16px;
 }
 
 .price-tag {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .price-currency {
@@ -95,6 +109,34 @@ button:active {
 
 .product-share-button:hover {
     background-color: rgb(4, 99, 222);
+}
+
+.product-thumbnail-arrow {
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+    border: 2px black solid;
+    background-color: rgb(128, 128, 128);
+    position: relative;
+    top: 50px;
+    box-sizing: border-box;
+    height: 200px;
+}
+
+.product-thumbnail-arrow-left {
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.product-thumbnail-arrow-right {
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.product-thumbnail-arrow:hover {
+    background-color: rgb(108, 108, 108);
 }
 
 
