@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, effect } from '@angular/core';
 import { ProductCard } from '../product-card/product-card';
 import { ProductModel } from '../product-model/product.model';
 
@@ -9,6 +9,27 @@ import { ProductModel } from '../product-model/product.model';
   styleUrl: './product-list.css',
 })
 export class ProductList {
+    receivedSortType = input<string>();
+
+    sortList(type: string) {
+        if (type === 'asc') {
+            this.products.sort((card1, card2) => card1.price - card2.price);
+        } else if (type === 'desc') {
+            this.products.sort((card1, card2) => card2.price - card1.price);
+        } else if (type === 'default') {
+            return;
+        } else {
+            alert("Something went wrong when sorting.");
+            return;
+        };
+    };
+
+    constructor() {
+        effect(() => {
+            this.sortList(this.receivedSortType() ?? 'default');
+        });
+    };
+
     products: ProductModel[] = [
         {
             id: 0,

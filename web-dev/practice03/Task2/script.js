@@ -1,8 +1,10 @@
 const AddTaskButton = document.getElementById("add-task-button");
 const AddTaskInput = document.getElementById("add-task-input");
 const TaskList = document.getElementById("task-list");
+const CompletedLabel = document.getElementById("completed-label");
 
 let sessionTaskList = [];
+let tasksCompleted = 0;
 
 if (localStorage.getItem("storedTaskList")) {
     sessionTaskList = JSON.parse(localStorage.getItem("storedTaskList"));
@@ -12,6 +14,18 @@ if (localStorage.getItem("storedTaskList")) {
 function storeTaskList() {
     let jsonTaskList = JSON.stringify(sessionTaskList);
     localStorage.setItem("storedTaskList", jsonTaskList);
+};
+
+function updateCompletedLabel() {
+    tasksCompleted = 0;
+
+    for (let task of sessionTaskList) {
+        if (task.isChecked) {
+            tasksCompleted++;
+        };
+    };
+
+    CompletedLabel.innerHTML = `Tasks completed: ${tasksCompleted}`;
 };
 
 function updateTaskList() {
@@ -38,6 +52,8 @@ function updateTaskList() {
             </button>
         </div>
         `;
+
+        updateCompletedLabel();
     };
 
     TaskList.innerHTML = htmlTaskList;
@@ -51,6 +67,7 @@ function updateTaskList() {
         console.log(sessionTaskList);
         
         updateTaskList();
+        updateCompletedLabel();
     });
 });
 };

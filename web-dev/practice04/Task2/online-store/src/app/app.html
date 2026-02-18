@@ -1,1 +1,2 @@
-<app-product-list/>
+<app-sort-buttons (passSortType)="handlePassedSortType($event)"/>
+<app-product-list [receivedSortType]="sortTypeToPass"/>
