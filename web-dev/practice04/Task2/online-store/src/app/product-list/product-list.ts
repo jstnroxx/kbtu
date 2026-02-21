@@ -17,7 +17,7 @@ export class ProductList {
         } else if (type === 'desc') {
             this.products.sort((card1, card2) => card2.price - card1.price);
         } else if (type === 'default') {
-            return;
+            this.products.sort((card1, card2) => card1.id - card2.id);
         } else {
             alert("Something went wrong when sorting.");
             return;
@@ -44,7 +44,7 @@ export class ProductList {
         {
             id: 1,
             name: "Giant Glory Advanced - 2023",
-            description: "The heart of the Glory Advanced is a lightweight, super-strong chassis that's handcrafted with Advanced-grade composite",
+            description: "The heart of the Glory Advanced is a lightweight, super-strong chassis that's handcrafted with Advanced-grade composite.",
             price: 3499900,
             rating: 0,
             image: "./images/giant/giant.jpg",
