@@ -1,0 +1,6 @@
+.product-holder {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    justify-items: center;
+    row-gap: 30px;
+}
