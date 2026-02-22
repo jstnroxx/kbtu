@@ -1,7 +1,11 @@
 <app-sort-buttons (passSortType)="receiveSortType($event)"/>
 
 <div class="product-holder">
-    @for (product of products(); track product.id; let ind = $index) {
-        <app-product-card [productObject]="products()[ind]" (sendLike)="receiveLike($event)"/>
+    @if (products().length === 0) {
+        <p>No items in this category.</p>
+    } @else {
+        @for (product of products(); track product.id; let ind = $index) {
+            <app-product-card [productObject]="products()[ind]" (sendLike)="receiveLike($event)"/>
+        }
     }
 </div>

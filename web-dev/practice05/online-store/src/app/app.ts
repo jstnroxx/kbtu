@@ -13,7 +13,7 @@ import jsonCategorizedProducts from '../../public/categorized-products.json';
 export class App {
     categorizedProducts: CategoryModel[] = jsonCategorizedProducts;
     
-    categoryIndex = 0;           // Implement category navigation
+    categoryIndex = 0;           // Implement category navigation and "home" screen. Revise optional tasks.
 
     updateLikeCount(event: ProductManipulatorModel) {
         const productCategory = this.categorizedProducts.find(category => category.id === event.categoryId)
@@ -22,7 +22,7 @@ export class App {
         if (productObject?.likes !== undefined) {
             if (event.likeCount === -1) {
                 const productIndex = productCategory?.products.findIndex(product => product === productObject) ?? 0
-                
+
                 productCategory?.products.splice(productIndex, 1)
             } else {
                 productObject.likes = event.likeCount;

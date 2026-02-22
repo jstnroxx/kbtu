@@ -1,5 +1,6 @@
 import { Component, input, output, linkedSignal, computed } from '@angular/core';
 import { ProductModel } from '../data-interfaces/product-model/product.model';
+import { ProductManipulatorModel } from '../data-interfaces/product-manipulator-model/product.manipulator.model';
 import { DecimalPipe } from '@angular/common';
 
 @Component({
@@ -10,7 +11,7 @@ import { DecimalPipe } from '@angular/common';
 })
 export class ProductCard {
     productObject = input<ProductModel>();
-    sendLike = output<Object>();
+    sendLike = output<ProductManipulatorModel>();
 
     currentImageIndex = linkedSignal({
         source: this.productObject,

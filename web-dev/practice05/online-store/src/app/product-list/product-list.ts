@@ -2,6 +2,7 @@ import { Component, signal, effect, input, output } from '@angular/core';
 import { ProductCard } from '../product-card/product-card';
 import { SortButtons } from '../sort-buttons/sort-buttons';
 import { ProductModel } from '../data-interfaces/product-model/product.model';
+import { ProductManipulatorModel } from '../data-interfaces/product-manipulator-model/product.manipulator.model';
 
 @Component({
   selector: 'app-product-list',
@@ -12,7 +13,7 @@ import { ProductModel } from '../data-interfaces/product-model/product.model';
 export class ProductList {
     products = input<ProductModel[]>([])
 
-    sendLike = output<Object>();
+    sendLike = output<ProductManipulatorModel>();
 
     receivedSortType = signal('default');
 
@@ -39,7 +40,7 @@ export class ProductList {
         });
     };
 
-    receiveLike(event: Object) {
+    receiveLike(event: ProductManipulatorModel) {
         this.sendLike.emit(event);
     };
 }
