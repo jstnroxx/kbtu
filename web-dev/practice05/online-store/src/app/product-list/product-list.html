@@ -1,11 +1,13 @@
-<app-sort-buttons (passSortType)="receiveSortType($event)"/>
+<div class="background-container">
+    <app-sort-buttons (passSortType)="receiveSortType($event)"/>
 
-<div class="product-holder">
-    @if (products().length === 0) {
-        <p>No items in this category.</p>
-    } @else {
-        @for (product of products(); track product.id; let ind = $index) {
-            <app-product-card [productObject]="products()[ind]" (sendLike)="receiveLike($event)"/>
+    <div class="product-holder">
+        @if (products().length >= 1) {
+            @for (product of products(); track product.id; let ind = $index) {
+                <app-product-card [productObject]="products()[ind]" (sendLike)="receiveLike($event)"/>
+            }
+        } @else {
+            <h3>No items in this category.</h3>
         }
-    }
+    </div>
 </div>

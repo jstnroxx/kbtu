@@ -1,0 +1,15 @@
+<div class="background-container">
+    <div class="grid" style="margin-bottom: 15px">
+        @if (categories().length === 0) {
+            <p>No categories.</p>
+        } @else {
+            @for (category of categories(); track category.id) {
+                <button class="category-button" (click)="redirectTo(category.id)">{{ category.name }}</button>
+            }
+        }
+    </div>
+
+    <div style="text-align: center">
+        <button class="restore-button" (click)="restoreProducts()">Restore Products</button>
+    </div>
+</div>

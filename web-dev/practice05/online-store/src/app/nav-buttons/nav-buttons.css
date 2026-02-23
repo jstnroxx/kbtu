@@ -1,0 +1,58 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    justify-items: center;
+    gap: 30px;
+}
+
+.background-container {
+    background-color: white;
+    border-radius: 50px;
+    padding: 30px;
+    min-height: 100px;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 5%;
+}
+
+.category-button,
+.restore-button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.category-button {
+    border: none;
+    color: white;
+    font-size: 32px;
+    background-color: rgb(24, 119, 242);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%), none;
+}
+
+.category-button:hover {
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.15);
+    background-color: rgb(4, 99, 222);
+}
+.category-button:active,
+.restore-button:active {
+    opacity: 0.85;
+}
+
+.restore-button {
+    border: 2px solid black;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.15);
+    color: black;
+    font-size: 24px;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%), none;
+}
+
+.restore-button:hover {
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.25);
+}
+

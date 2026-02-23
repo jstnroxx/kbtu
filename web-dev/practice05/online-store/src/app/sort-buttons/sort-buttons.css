@@ -27,3 +27,12 @@ button:hover {
 button:active {
     opacity: 0.85;
 }
+
+.sort-symbol {
+    font-weight: bold;
+    color: rgb(24, 119, 242);
+}
+
+.sort-price {
+    color: rgb(24, 119, 242);
+}

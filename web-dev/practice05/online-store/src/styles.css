@@ -1,7 +1,11 @@
 body {
     background-color: rgb(245, 245, 245);
+    background-repeat: no-repeat;
     font-family: 'Roboto', Arial;
     margin: 0;
+    background-image: url('/images/backgroundPic.png');
+    background-size: cover;
+    background-position: center;
 }
 
 header {
@@ -11,7 +15,7 @@ header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.15);
     z-index: 10;
     margin-bottom: 30px;
     width: 100vw;
@@ -24,9 +28,6 @@ a {
 }
 
 main {
-    background-color: white;
-    border-radius: 50px;
-    padding: 30px;
     display: block;
     min-width: 350px;
     width: 75%;
@@ -42,15 +43,16 @@ ul {
 li {
     display: inline-block;
     fill: rgba(0, 0, 0, 0.32);
-    transition: fill 0.15s;
+    transition: fill 0.25s;
 }
 
 li:hover {
-    fill: black;
+    fill: rgb(4, 99, 222);
 }
 
 footer {
-    border-top: rgba(0, 0, 0, 0.15) solid 1px;
+    border-top: rgba(0, 0, 0, 0.15) solid 3px;
+    border-bottom: 0;
     display: flex;
     justify-content: space-evenly;
     color: rgb(74, 74, 74);
@@ -62,6 +64,9 @@ footer {
     margin-top: 30px;
     width: 100vw;
     box-sizing: border-box;
+    background-color: rgb(245, 245, 245);
+    position: relative;
+    bottom: 0;
 }
 
 .underline {
@@ -85,11 +90,11 @@ footer {
 #top-anchor {
     color: rgb(74, 74, 74);
     text-decoration: underline;
-    transition: color 0.15s;
+    transition: color 0.25s;
 }
 
 #top-anchor:hover {
-    color: black;
+    color: rgb(4, 99, 222);
 }
 
 #footer-left {
