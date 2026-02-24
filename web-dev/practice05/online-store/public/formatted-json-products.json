@@ -5,67 +5,83 @@
         "products": [
             {
                 "id": 0,
-                "name": "iPhone 17 Pro 256Gb",
-                "categoryId": 0,
-                "description": "The iPhone 17 is a smartphone developed and marketed by Apple that is part of the nineteenth generation of the iPhone.",
-                "price": 774648,
-                "rating": 5,
-                "likes": 0,
-                "image": "./images/iphone17/iphone17.jpg",
-                "images": [
-                    "./images/iphone17/iphone17_1.jpg",
-                    "./images/iphone17/iphone17_2.jpg",
-                    "./images/iphone17/iphone17_3.jpg"
-                ],
-                "link": "https://kaspi.kz/shop/p/apple-iphone-17-pro-256gb-oranzhevyi-145467625"
-            },
-            {
-                "id": 1,
                 "name": "Giant Glory Advanced - 2023",
                 "categoryId": 0,
                 "description": "The heart of the Glory Advanced is a lightweight, super-strong chassis that's handcrafted with Advanced-grade composite.",
                 "price": 3499900,
                 "rating": 0,
                 "likes": 0,
-                "image": "./images/giant/giant.jpg",
+                "image": "./images/giantGlory/giantGlory.jpg",
                 "images": [
-                    "./images/giant/giant_1.jpg",
-                    "./images/giant/giant_2.jpg",
-                    "./images/giant/giant_3.jpg"
+                    "./images/giantGlory/giantGlory_1.jpg",
+                    "./images/giantGlory/giantGlory_2.jpg",
+                    "./images/giantGlory/giantGlory_3.jpg"
                 ],
                 "link": "https://kaspi.kz/shop/p/velosiped-giant-glory-advanced---2023-29-djuim-2023-18-5-djuimov-belyi-121119182"
             },
             {
-                "id": 2,
-                "name": "Apple Watch Ultra Series 2",
+                "id": 1,
+                "name": "Author Impulse 2023",
                 "categoryId": 0,
-                "description": "The Apple Watch Ultra 2 is a rugged 49mm smartwatch designed for athletes and outdoor enthusiasts.",
-                "price": 553322,
+                "description": "The Author Impulse 29 is an aluminum/alloy cross-country mountain bike.",
+                "price": 349900,
                 "rating": 5,
                 "likes": 0,
-                "image": "./images/watch/watch.jpg",
+                "image": "./images/authorImpulse/authorImpulse.jpg",
                 "images": [
-                    "./images/watch/watch_1.jpg",
-                    "./images/watch/watch_2.jpg",
-                    "./images/watch/watch_3.jpg"
+                    "./images/authorImpulse/authorImpulse_1.jpg",
+                    "./images/authorImpulse/authorImpulse_2.jpg",
+                    "./images/authorImpulse/authorImpulse_3.jpg"
                 ],
-                "link": "https://kaspi.kz/shop/p/apple-watch-ultra-series-2-gps-cellular-49-mm-starlight-sinii-113573988"
+                "link": "https://kaspi.kz/shop/p/velosiped-author-impulse-429449-29-djuim-2023-19-djuimov-chernyi-112288995"
+            },
+            {
+                "id": 2,
+                "name": "Giant Talon 29",
+                "categoryId": 0,
+                "description": "These classic hardtail mountain bikes feature lightweight aluminum frames that give you a great feel for the trail.",
+                "price": 589900,
+                "rating": 5,
+                "likes": 0,
+                "image": "./images/giantTalon/giantTalon.jpg",
+                "images": [
+                    "./images/giantTalon/giantTalon_1.jpg",
+                    "./images/giantTalon/giantTalon_2.jpg",
+                    "./images/giantTalon/giantTalon_3.jpg"
+                ],
+                "link": "https://kaspi.kz/shop/p/velosiped-giant-talon-29-0---2025-10950072-xxl-29-djuim-2025-24-djuima-krasnyi-136077440"
             },
             {
                 "id": 3,
-                "name": "Xiaomi Redmi Power Bank",
+                "name": "TREK Marlin 5 2023",
                 "categoryId": 0,
-                "description": "Xiaomi power banks are compact, high-efficiency portable chargers, often featuring 10,000mAh to 20,000mAh capacities.",
-                "price": 4096,
-                "rating": 4,
+                "description": "The Trek Marlin 5 is a trail-worthy daily rider that's perfectly suited for everyday adventures whether it's commuting on the road or riding the trails.",
+                "price": 345900,
+                "rating": 5,
                 "likes": 0,
-                "image": "./images/xiaomi/xiaomi.jpg",
+                "image": "./images/trekMarlin/trekMarlin.jpg",
                 "images": [
-                    "./images/xiaomi/xiaomi_1.jpg",
-                    "./images/xiaomi/xiaomi_2.jpg",
-                    "./images/xiaomi/xiaomi_3.jpg"
+                    "./images/trekMarlin/trekMarlin_1.jpg",
+                    "./images/trekMarlin/trekMarlin_2.jpg",
+                    "./images/trekMarlin/trekMarlin_3.jpg"
                 ],
-                "link": "https://kaspi.kz/shop/p/vneshnii-akkumuljator-xiaomi-redmi-power-bank-20000-mach-18-vt-chernyi-100322086"
+                "link": "https://kaspi.kz/shop/p/velosiped-trek-marlin-5-29-djuim-2023-20-djuimov-seryi-110610040"
+            },
+            {
+                "id": 4,
+                "name": "Cannondale M Trail 6 2021",
+                "categoryId": 0,
+                "description": "Cannondale Trail 6, a hardtail built for the mountains and anything else.",
+                "price": 319900,
+                "rating": 5,
+                "likes": 0,
+                "image": "./images/cannondaleTrail/cannondaleTrail.jpg",
+                "images": [
+                    "./images/cannondaleTrail/cannondaleTrail_1.jpg",
+                    "./images/cannondaleTrail/cannondaleTrail_2.jpg",
+                    "./images/cannondaleTrail/cannondaleTrail_3.jpg"
+                ],
+                "link": "https://kaspi.kz/shop/p/velosiped-cannondale-m-trail-6-29-djuim-2021-18-djuimov-oranzhevyi-103910657"
             }
         ]
     },
@@ -75,110 +91,255 @@
         "products" : [
             {
                 "id": 0,
-                "name": "MSI MAG255XF",
+                "name": "Scott Aspect eRIDE 910 Wave",
                 "categoryId": 1,
-                "description": "The MSI ARSENAL GAMING (MAG) series is engineered to give gamers the edge they need to dominate on the virtual battlefield.",
-                "price": 93989,
-                "rating": 5,
+                "description": "Discover the SCOTT Aspect eRide Wave, the electric MTB with Bosch CX motor, aluminum frame, and 12 speeds for every adventure.",
+                "price": 2249000,
+                "rating": 0,
                 "likes": 0,
-                "image": "./images/msi/msi.jpg",
+                "image": "./images/scottAspectWave/scottAspectWave.jpg",
                 "images": [
-                    "./images/msi/msi_1.jpg",
-                    "./images/msi/msi_2.jpg",
-                    "./images/msi/msi_3.jpg"
+                    "./images/scottAspectWave/scottAspectWave_1.jpg",
+                    "./images/scottAspectWave/scottAspectWave_2.jpg",
+                    "./images/scottAspectWave/scottAspectWave_3.jpg"
                 ],
-                "link": "https://kaspi.kz/shop/p/24-5-msi-mag255xf-chernyi-131894370"
+                "link": "https://kaspi.kz/shop/p/scott-aspect-eride-910-wave-29-djuim-2026-16-djuimov-seryi-157681383"
             },
             {
                 "id": 1,
-                "name": "Jiangxihuitian",
+                "name": "Bergamont E-Horizon Sport 30",
                 "categoryId": 1,
-                "description": "A fedora is a timeless, soft-brimmed hat featuring an indented, 'pinched' crown.",
-                "price": 1861,
-                "rating": 5,
+                "description": "The Bergamont E-Horizon Sport is equipped with an advanced Shimano Cues, RD-U4000, Shadow groupset for smooth and efficient gear shifting.",
+                "price": 1899000,
+                "rating": 0,
                 "likes": 0,
-                "image": "./images/hat/hat.jpg",
+                "image": "./images/bergamontE/bergamontE.jpg",
                 "images": [
-                    "./images/hat/hat_1.jpg",
-                    "./images/hat/hat_2.jpg"
+                    "./images/bergamontE/bergamontE_1.jpg",
+                    "./images/bergamontE/bergamontE_2.jpg",
+                    "./images/bergamontE/bergamontE_3.jpg"
                 ],
-                "link": "https://kaspi.kz/shop/p/shljapa-jiangxihuitian-ht1260-razmer-56-57-58-chernyi-104381002"
+                "link": "https://kaspi.kz/shop/p/bergamont-e-horizon-sport-30-29-djuim-2026-19-djuimov-bezhevyi-157681321"
+            },
+            {
+                "id": 2,
+                "name": "Scott Patron eRIDE 920",
+                "categoryId": 1,
+                "description": "SCOTT Patron eRIDE:EMTB with Bosch CX motor, battery, and models for every riding style.",
+                "price": 3299000,
+                "rating": 0,
+                "likes": 0,
+                "image": "./images/scottPatron/scottPatron.jpg",
+                "images": [
+                    "./images/scottPatron/scottPatron_1.jpg",
+                    "./images/scottPatron/scottPatron_2.jpg",
+                    "./images/scottPatron/scottPatron_3.jpg"
+                ],
+                "link": "https://kaspi.kz/shop/p/scott-patron-eride-920-29-djuim-2026-19-5-djuimov-chernyi-154297664"
+            },
+            {
+                "id": 3,
+                "name": "Cube Stereo Hybrid ONE77",
+                "categoryId": 1,
+                "description": "The Cube Stereo Hybrid One77 is an attractively priced, well-designed e-MTB for use on rough terrain.",
+                "price": 3999900,
+                "rating": 0,
+                "likes": 0,
+                "image": "./images/cubeStereo/cubeStereo.jpg",
+                "images": [
+                    "./images/cubeStereo/cubeStereo_1.jpg",
+                    "./images/cubeStereo/cubeStereo_2.jpg",
+                    "./images/cubeStereo/cubeStereo_3.jpg"
+                ],
+                "link": "https://kaspi.kz/shop/p/cube-stereo-hybrid-one77-hpc-race-803110-29-djuim-2025-18-5-djuimov-bordovyi-143453301"
+            },
+            {
+                "id": 4,
+                "name": "Cube Reaction Hybrid ONE 800",
+                "categoryId": 1,
+                "description": "With its high-capacity 800Wh battery and quiet, powerful Bosch CX motor, the Reaction Hybrid ONE gives you the freedom to explore.",
+                "price": 2199900,
+                "rating": 0,
+                "likes": 0,
+                "image": "./images/cubeReaction/cubeReaction.jpg",
+                "images": [
+                    "./images/cubeReaction/cubeReaction_1.jpg",
+                    "./images/cubeReaction/cubeReaction_2.jpg",
+                    "./images/cubeReaction/cubeReaction_3.jpg"
+                ],
+                "link": "https://kaspi.kz/shop/p/cube-reaction-hybrid-one-800-808150-27-5-djuim-2025-18-djuimov-seryi-143453319"
             }
         ]
     },
     {
         "id" : 2,
-        "name" : "Equipment",
+        "name" : "Accessories",
         "products" : [
             {
                 "id": 0,
-                "name": "ASUS TUF Gaming A15",
+                "name": "Garmin Edge 1050",
                 "categoryId": 2,
-                "description": "The ASUS TUF Gaming A15 is a durable, budget-friendly 15.6-inch gaming laptop.",
-                "price": 468757,
-                "rating": 4,
+                "description": "Edge® 1050 is a premium cycling computer with a vivid color display and up to 20 hrs.",
+                "price": 468900,
+                "rating": 5,
                 "likes": 0,
-                "image": "./images/asus/asus.jpg",
+                "image": "./images/garminEdge/garminEdge.jpg",
                 "images": [
-                    "./images/asus/asus_1.jpg",
-                    "./images/asus/asus_2.jpg",
-                    "./images/asus/asus_3.jpg"
+                    "./images/garminEdge/garminEdge_1.jpg",
+                    "./images/garminEdge/garminEdge_2.jpg",
+                    "./images/garminEdge/garminEdge_3.jpg"
                 ],
-                "link": "https://kaspi.kz/shop/p/asus-tuf-gaming-a15-15-6-16-gb-ssd-512-gb-bez-os-90nr0jf7-m00jd0-147782981"
+                "link": "https://kaspi.kz/shop/p/besprovodnoi-garmin-edge-1050-132401878"
             },
             {
                 "id": 1,
-                "name": "Fifine AM8",
+                "name": "Garmin Varia Vue",
                 "categoryId": 2,
-                "description": "Get your voice clarity with FIFINE AmpliGame AM8 Microphone, a USB/XLR dynamic microphone.",
-                "price": 31999,
+                "description": "Varia Vue is a cycling headlight with a 4K resolution camera, a superbright light, auto brightness control, and up to 7 hours of battery life.",
+                "price": 322990,
                 "rating": 5,
                 "likes": 0,
-                "image": "./images/fifine/fifine.jpg",
+                "image": "./images/garminVaria/garminVaria.jpg",
                 "images": [
-                    "./images/fifine/fifine_1.jpg",
-                    "./images/fifine/fifine_2.jpg",
-                    "./images/fifine/fifine_3.jpg"
+                    "./images/garminVaria/garminVaria_1.jpg",
+                    "./images/garminVaria/garminVaria_2.jpg",
+                    "./images/garminVaria/garminVaria_3.jpg"
                 ],
-                "link": "https://kaspi.kz/shop/p/mikrofon-fifine-am8-white-belyi-114268353"
+                "link": "https://kaspi.kz/shop/p/garmin-varia-vue-010-02911-00-chernyi-141805460"
+            },
+            {
+                "id": 2,
+                "name": "ThinkRider Road Travel Bag",
+                "categoryId": 2,
+                "description": "The ThinkRider Road Bike Travel Bag is a must-have for cyclists traveling to training camps and races.",
+                "price": 167900,
+                "rating": 5,
+                "likes": 0,
+                "image": "./images/thinkBag/thinkBag.jpg",
+                "images": [
+                    "./images/thinkBag/thinkBag_1.jpg",
+                    "./images/thinkBag/thinkBag_2.jpg",
+                    "./images/thinkBag/thinkBag_3.jpg"
+                ],
+                "link": "https://kaspi.kz/shop/p/dlja-velosipeda-thinkrider-road-bike-travel-bag-chernyi-131394867"
+            },
+            {
+                "id": 3,
+                "name": "Rudy Project Cutline",
+                "categoryId": 2,
+                "description": "Rudy Project Cutline sport sunglasses are perfect for all outdoor activities including running, cycling, gravel biking, mountain biking.",
+                "price": 138500,
+                "rating": 0,
+                "likes": 0,
+                "image": "./images/rudyCutline/rudyCutline.jpg",
+                "images": [
+                    "./images/rudyCutline/rudyCutline_1.jpg",
+                    "./images/rudyCutline/rudyCutline_2.jpg",
+                    "./images/rudyCutline/rudyCutline_3.jpg"
+                ],
+                "link": "https://kaspi.kz/shop/p/rudy-project-cutline-sp637827-0000-goluboi-114811652"
+            },
+            {
+                "id": 4,
+                "name": "TREK Bontrager TLR",
+                "categoryId": 2,
+                "description": "The TLR Flash Charger is a single-pump solution for everyday use and home tubeless tire installation.",
+                "price": 87900,
+                "rating": 0,
+                "likes": 0,
+                "image": "./images/trekBontrager/trekBontrager.jpg",
+                "images": [
+                    "./images/trekBontrager/trekBontrager_1.jpg",
+                    "./images/trekBontrager/trekBontrager_2.jpg",
+                    "./images/trekBontrager/trekBontrager_3.jpg"
+                ],
+                "link": "https://kaspi.kz/shop/p/napol-nyi-trek-bontrager-tlr-flash-charger-151581058"
             }
         ]
     },
     {
         "id" : 3,
-        "name" : "Accessories",
+        "name" : "Clipless shoes",
         "products" : [
             {
                 "id": 0,
-                "name": "Ledger Nano S Plus",
+                "name": "Specialized 61020",
                 "categoryId": 3,
-                "description": "Securely manage 15000+ crypto with the classic Ledger Nano S Plus signer.",
-                "price": 60692,
+                "description": "Road cycling shoes with an ergonomic design provide the necessary flex index of 6.0 and comfort.",
+                "price": 69900,
                 "rating": 5,
                 "likes": 0,
-                "image": "./images/ledger/ledger.jpg",
+                "image": "./images/specializedShoes/specializedShoes.jpg",
                 "images": [
-                    "./images/ledger/ledger_1.jpg",
-                    "./images/ledger/ledger_2.jpg",
-                    "./images/ledger/ledger_3.jpg"
+                    "./images/specializedShoes/specializedShoes_1.jpg",
+                    "./images/specializedShoes/specializedShoes_2.jpg",
+                    "./images/specializedShoes/specializedShoes_3.jpg"
                 ],
-                "link": "https://kaspi.kz/shop/p/ledger-nano-s-plus-chernyi-106365043"
+                "link": "https://kaspi.kz/shop/p/shosseinye-specialized-61020-5542-42-117118451"
             },
             {
                 "id": 1,
-                "name": "Razer BlackWidow V3",
+                "name": "Mavic Cosmic Pro II",
                 "categoryId": 3,
-                "description": "The name that started it all returns to reassert its dominance. Feel the difference with the Razer BlackWidow V3.",
-                "price": 43000,
-                "rating": 5,
+                "description": "MAVIC COSMIC PRO II is a high-performance shoe for intense training and competition.",
+                "price": 139900,
+                "rating": 0,
                 "likes": 0,
-                "image": "./images/razer/razer.jpg",
+                "image": "./images/mavicCosmic/mavicCosmic.jpg",
                 "images": [
-                    "./images/razer/razer_1.jpg",
-                    "./images/razer/razer_2.jpg",
-                    "./images/razer/razer_3.jpg"
+                    "./images/mavicCosmic/mavicCosmic_1.jpg",
+                    "./images/mavicCosmic/mavicCosmic_2.jpg",
+                    "./images/mavicCosmic/mavicCosmic_3.jpg"
                 ],
-                "link": "https://kaspi.kz/shop/p/razer-blackwidow-v3-tenkeyless-rz03-03490700-r3r1-chernyi-101004900"
+                "link": "https://kaspi.kz/shop/p/shosseinye-mavic-cosmic-pro-ii-40805900-43-5-156240169"
+            },
+            {
+                "id": 2,
+                "name": "Mavic Crossmax Boa",
+                "categoryId": 3,
+                "description": "High-performance cross-country cycling shoe featuring the BOA® Fit System delivers micro-adjustable and precise fit, for better power transfer efficiency.",
+                "price": 105900,
+                "rating": 0,
+                "likes": 0,
+                "image": "./images/mavicCrossmax/mavicCrossmax.jpg",
+                "images": [
+                    "./images/mavicCrossmax/mavicCrossmax_1.jpg",
+                    "./images/mavicCrossmax/mavicCrossmax_2.jpg",
+                    "./images/mavicCrossmax/mavicCrossmax_3.jpg"
+                ],
+                "link": "https://kaspi.kz/shop/p/mtb-mavic-crossmax-boa-s000040-7-5-41-1-3-41-5-158745650"
+            },
+            {
+                "id": 3,
+                "name": "Specialized Torch 2.0",
+                "categoryId": 3,
+                "description": "The Torch 2.0 features a fully perforated, single-layer synthetic, and seamless upper.",
+                "price": 125500,
+                "rating": 0,
+                "likes": 0,
+                "image": "./images/specializedTorch/specializedTorch.jpg",
+                "images": [
+                    "./images/specializedTorch/specializedTorch_1.jpg",
+                    "./images/specializedTorch/specializedTorch_2.jpg",
+                    "./images/specializedTorch/specializedTorch_3.jpg"
+                ],
+                "link": "https://kaspi.kz/shop/p/shosseinye-specialized-61023-3244-torch-2-0-road-shoes-44-155354566"
+            },
+            {
+                "id": 4,
+                "name": "Specialized S-Works Torch",
+                "categoryId": 3,
+                "description": "The S-Works Torch is the latest evolution of the winningest footwear in cycling.",
+                "price": 256900,
+                "rating": 0,
+                "likes": 0,
+                "image": "./images/sworksTorch/sworksTorch.jpg",
+                "images": [
+                    "./images/sworksTorch/sworksTorch_1.jpg",
+                    "./images/sworksTorch/sworksTorch_2.jpg",
+                    "./images/sworksTorch/sworksTorch_3.jpg"
+                ],
+                "link": "https://kaspi.kz/shop/p/shosseinye-specialized-61022-01435-s-works-torch-black-43-5-155354559"
             }
         ]
     }

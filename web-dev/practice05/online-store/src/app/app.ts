@@ -53,11 +53,12 @@ export class App {
 
     handleRedirect(event: number) {
         this.categoryProducts = this.categorizedProducts.filter(obj => obj.id === event);
-        console.log(this.productCategories);
     };
 
     handleRestore() {
         this.categorizedProducts = structuredClone(jsonCategorizedProducts);
         localStorage.removeItem('productList');
+        
+        this.categoryProducts = [];
     };
 }
