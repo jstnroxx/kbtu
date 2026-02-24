@@ -74,7 +74,7 @@ export class ProductCard {
         });
     };
 
-    deleteProduct() {
+    promptDeleteProduct() {
         this.sendLike.emit({
             likeCount: -1,
             categoryId: this.productObject()?.categoryId ?? 0,

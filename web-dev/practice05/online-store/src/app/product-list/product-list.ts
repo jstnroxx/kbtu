@@ -1,4 +1,4 @@
-import { Component, signal, effect, input, output } from '@angular/core';
+import { Component, signal, effect, input, output, viewChild, ElementRef } from '@angular/core';
 import { ProductCard } from '../product-card/product-card';
 import { SortButtons } from '../sort-buttons/sort-buttons';
 import { ProductModel } from '../data-interfaces/product-model/product.model';
@@ -40,7 +40,22 @@ export class ProductList {
         });
     };
 
+    ConfirmationDialog = viewChild<ElementRef>('confirmationDialog');
+    CancelButton = viewChild<ElementRef>('cancelButton');
+    ConfirmButton = viewChild<ElementRef>('confirmButton');
+    
+    sendLikeHandler: any;
+
     receiveLike(event: ProductManipulatorModel) {
-        this.sendLike.emit(event);
+        if (event?.likeCount === -1) {
+            this.ConfirmationDialog()?.nativeElement.showModal();
+
+            this.ConfirmButton()?.nativeElement.removeEventListener('click', this.sendLikeHandler);
+            this.sendLikeHandler = () => this.sendLike.emit(event); 
+
+            this.ConfirmButton()?.nativeElement.addEventListener('click', this.sendLikeHandler, { once: true });
+        } else {
+            this.sendLike.emit(event);
+        };
     };
 }

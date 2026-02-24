@@ -1,5 +1,5 @@
 <app-nav-buttons [categories]="productCategories" (redirectToCategory)="handleRedirect($event)" (queryRestore)="handleRestore()"/>
-@if (categoryIndex === -1) {
+@if (categoryProducts.length === 0) {
     <div class="background-container">
         <h1> 
             Hello! 
@@ -16,5 +16,5 @@
         <p>What are you looking for today?</p>
     </div>
 } @else {
-    <app-product-list [products]="categorizedProducts[(categoryIndex % categorizedProducts.length)].products" (sendLike)="updateLikeCount($event)"/>
+    <app-product-list [products]="categoryProducts[0].products" (sendLike)="updateLikeCount($event)"/>
 };

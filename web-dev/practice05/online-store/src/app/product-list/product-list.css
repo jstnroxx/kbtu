@@ -13,3 +13,74 @@
     row-gap: 30px;
 }
 
+button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    font-size: 32px;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%), none;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+button:hover {
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    opacity: 0.85;
+}
+
+.flexbox {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.confirmation-dialog {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.15);
+    min-width: 350px;
+    width: 20%;
+    z-index: 10;
+}
+
+.confirmation-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);              
+  opacity: 0.75;                          
+}
+
+.confirmation-text {
+    font-weight: bold;
+    text-align: center;
+    font-size: 32px;
+    margin-top: 0;
+}
+
+.cancel-button {
+    background-color: rgba(0, 0, 0, 0.15);
+    border: 2px black solid;
+    color: black;
+}
+
+.cancel-button:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.confirm-button {
+    background-color: white;
+    border: 2px red solid;
+    color: red;
+}
+
+.confirm-button:hover {
+    background-color: rgba(255, 0, 0, 0.15);
+}
+
+.confirm-button:active {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+

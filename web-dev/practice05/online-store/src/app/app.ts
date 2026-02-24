@@ -28,7 +28,7 @@ export class App {
         this.productCategories = this.categorizedProducts.map(({ id, name }) => ({ id, name}));
     };
     
-    categoryIndex = -1;         
+    categoryProducts: CategoryModel[] = [];         
 
     storeProducts() {
         localStorage.setItem('productList', JSON.stringify(this.categorizedProducts));
@@ -52,7 +52,7 @@ export class App {
     };
 
     handleRedirect(event: number) {
-        this.categoryIndex = event;
+        this.categoryProducts = this.categorizedProducts.filter(obj => obj.id === event);
         console.log(this.productCategories);
     };
 

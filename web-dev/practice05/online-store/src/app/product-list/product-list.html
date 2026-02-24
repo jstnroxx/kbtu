@@ -1,13 +1,31 @@
 <div class="background-container">
     <app-sort-buttons (passSortType)="receiveSortType($event)"/>
 
+    <dialog #confirmationDialog class="confirmation-dialog">
+        <p class="confirmation-text">
+            Are you sure?
+        </p>
+
+        <form method="dialog">
+            <div class="flexbox">
+                <button #cancelButton class="cancel-button">
+                    Cancel
+                </button>
+
+                <button #confirmButton class="confirm-button">
+                    Delete
+                </button>
+            </div>
+        </form>
+    </dialog>  
+
     <div class="product-holder">
         @if (products().length >= 1) {
             @for (product of products(); track product.id; let ind = $index) {
                 <app-product-card [productObject]="products()[ind]" (sendLike)="receiveLike($event)"/>
             }
         } @else {
-            <h3>No items in this category.</h3>
+            <p>No items in this category.</p>
         }
     </div>
 </div>
