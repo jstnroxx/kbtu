@@ -1,5 +1,6 @@
 p {
     margin: 0;
+    word-break: break-all;
 }
 
 button,
@@ -53,6 +54,7 @@ input:focus {
     min-width: 250px;
     box-sizing: border-box;
     margin: auto;
+    margin-bottom: 5px;
 }
 
 .flexbox {

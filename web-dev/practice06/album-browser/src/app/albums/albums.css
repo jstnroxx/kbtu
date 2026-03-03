@@ -6,6 +6,7 @@ ul {
     align-items: center;
     gap: 5px;
     margin: 0;
+    margin-bottom: 5px;
 }
 
 li {
