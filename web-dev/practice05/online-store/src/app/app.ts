@@ -49,8 +49,8 @@ export class App {
         };
 
         this.storeProducts();
-    };
-
+    }; 
+ 
     handleRedirect(event: number) {
         this.categoryProducts = this.categorizedProducts.filter(obj => obj.id === event);
     };
