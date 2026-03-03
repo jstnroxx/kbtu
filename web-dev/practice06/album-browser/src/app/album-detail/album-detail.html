@@ -1,1 +1,42 @@
-<p>album-detail works!</p>
+<div class="card">
+    @if (currentAlbum().id != 0) {
+        <p>
+            <span class="bold">Album userId:</span> {{ currentAlbum().userId }}
+        </p>
+        
+        <p style="margin-top: 10px; margin-bottom: 10px;">
+            <span class="bold">Album id:</span> {{ currentAlbum().id }}
+        </p>
+
+        <div class="flexbox">
+            <span class="bold" style="flex-shrink: 0">Album title:&nbsp;</span>
+            <div>
+                <p>
+                    {{ currentAlbum().title }}
+                </p>
+            </div>
+        </div>
+
+        <div class="flexbox margins center">
+            <input #titleInput (input)="updateTitleInput(titleInput.value)" [value]="currentAlbum().title">
+
+            <button (click)="setTitle()">
+                Save
+            </button>
+        </div>
+
+        <div class="flexbox margins center">
+            <a routerLink="/albums">
+                Back
+            </a>
+
+            <a routerLink="/albums/{{ currentAlbumId }}/photos">
+                View photos
+            </a>
+        </div>
+    } @else {
+        <div class="flexbox center">
+            <div class="loader"></div>
+        </div>
+    }
+</div>

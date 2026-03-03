@@ -1,0 +1,39 @@
+header {
+    background-color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 5px;
+}
+
+nav {
+    background-color: orange;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0 1px 5px 5px rgba(0, 0, 0, 0.15);
+    margin-bottom: 15px;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+    padding: 5px;
+}
+
+a:hover {
+    opacity: 0.5;
+}
+
+a:active {
+    opacity: 0.25;
+}
+
+.active-link {
+    background-color: rgb(235, 135, 0);
+}
+
+.header-title {
+    font-weight: 500;
+    font-size: 18px;
+}

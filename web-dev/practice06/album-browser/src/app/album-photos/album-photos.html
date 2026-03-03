@@ -1,1 +1,19 @@
-<p>album-photos works!</p>
+<div class="card">
+    @if (albumPhotos().length != 0) {
+        <div class="image-holder">
+            @for (photo of albumPhotos(); track photo.id) {
+                <img src="{{ photo.thumbnailUrl }}" width="64px" height="64px" title="{{ photo.title }}">
+            }
+        </div>
+    } @else {
+        <div class="flexbox center">
+            <div class="loader"></div>
+        </div>
+    }
+
+    <div class="flexbox">
+        <a routerLink="/albums/{{ albumId }}">
+            Back
+        </a>
+    </div>
+</div>

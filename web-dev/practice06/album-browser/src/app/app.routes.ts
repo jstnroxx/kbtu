@@ -13,27 +13,31 @@ export const routes: Routes = [
         pathMatch: 'full'
     },
     {
-        path: '/home',
-        component: Home
+        path: 'home',
+        component: Home,
+        title: 'Album Browser'
     },
     {
-        path: '/about',
-        component: About
+        path: 'about',
+        component: About,
+        title: 'About'
     },
     {
-        path: '/albums',
-        component: Albums
+        path: 'albums',
+        component: Albums,
+        title: 'Albums'
     },
     {
-        path: '/albums/:id',
-        component: AlbumDetail
+        path: 'albums/:id',
+        component: AlbumDetail,
     },
     {
-        path: '/albums/:id/photos',
+        path: 'albums/:id/photos',
         component: AlbumPhotos
     },
     {
         path: '**',
-        component: NotFound
+        component: NotFound,
+        title: 'Not Found'
     }
 ];

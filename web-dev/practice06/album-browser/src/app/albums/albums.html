@@ -1,1 +1,21 @@
-<p>albums works!</p>
+<ul>
+    @if (allAlbums().length > 0) {
+        @for (album of allAlbums(); track album.id) {
+            <li>
+                <p class="album-number">
+                    Album &numero;{{ album.id }}
+                </p>
+
+                <a routerLink="/albums/{{ album.id }}">
+                    {{ album.title }}
+                </a>
+
+                <br>
+
+                <button (click)="deleteAlbum(album.id)">Delete</button>
+            </li>
+        }
+    } @else {
+        <div class="loader"></div>
+    }
+</ul>
