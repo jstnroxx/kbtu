@@ -1,5 +1,5 @@
 <ul>
-    @if (allAlbums().length > 0) {
+    @if ((allAlbums()?.length ?? -1) > 0) {
         @for (album of allAlbums(); track album.id) {
             <li>
                 <p class="album-number">
@@ -15,6 +15,11 @@
                 <button (click)="deleteAlbum(album.id)">Delete</button>
             </li>
         }
+        <li style="display: flex; justify-content: flex-end; border: none; background-color: transparent; padding: 0;">
+            <button (click)="deleteAllAlbums()">Delete All</button>
+        </li>
+    } @else if (allAlbums()?.length === 0) {
+        <p>No albums available.</p>
     } @else {
         <div class="loader"></div>
     }

@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './albums.css',
 })
 export class Albums implements OnInit {
-    allAlbums = signal<Album[]>([]);
+    allAlbums = signal<Album[] | undefined>(undefined);
 
     constructor(private albumService: AlbumService) {};
 
@@ -23,8 +23,18 @@ export class Albums implements OnInit {
     deleteAlbum(albumId: number) {
         this.albumService.deleteAlbum(albumId).subscribe({
             complete: () => {
-                this.allAlbums.set(this.allAlbums().filter(album => album.id != albumId));
+                this.allAlbums.set(this.allAlbums()?.filter(album => album.id != albumId));
             }
         });
+    };
+
+    deleteAllAlbums() {
+        if (this.allAlbums()) {
+            for (let album of this.allAlbums() ?? []) {
+                this.deleteAlbum(album.id);
+            }
+        } else {
+            return
+        }
     };
 }
