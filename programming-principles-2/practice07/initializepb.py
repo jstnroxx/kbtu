@@ -23,7 +23,7 @@ def initPhonebook():
         
         return "Initialized phonebook successfully."
     except Exception as exc: 
-        return "Something went wrong when initializing the phonebook:" + str(exc)
+        return "Something went wrong when initializing the phonebook: " + str(exc)
     
 def initTestPhones(rowAmount = 3):
     command = """
@@ -48,7 +48,7 @@ def initTestPhones(rowAmount = 3):
         
         return "Inserted phonebook test rows successfully."
     except Exception as exc: 
-        return "Something went wrong when inserting phonebook test rows:" + str(exc)
+        return "Something went wrong when inserting phonebook test rows: " + str(exc)
     
 if __name__ == "__main__":
     initPhonebook()

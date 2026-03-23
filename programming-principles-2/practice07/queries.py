@@ -33,9 +33,9 @@ def insertRow(row):
         cursor.close()
         connection.close()
         
-        return "Inserted the row successfully."
+        return "Inserted the contact successfully."
     except Exception as exc: 
-        return "Something went wrong when inserting the row:" + str(exc)
+        return "Something went wrong when inserting the contact: " + str(exc)
 
 def insertManyRows(rows):
     command = """
@@ -54,9 +54,9 @@ def insertManyRows(rows):
         cursor.close()
         connection.close()
         
-        return "Inserted rows successfully."
+        return "Inserted contacts successfully."
     except Exception as exc: 
-        return "Something went wrong when inserting multiple rows:" + str(exc)
+        return "Something went wrong when inserting multiple contacts: " + str(exc)
 
 def updatePhone(rowId, newPhone):
     command = """
@@ -76,7 +76,7 @@ def updatePhone(rowId, newPhone):
         
         return "Updated the phone successfully."
     except Exception as exc: 
-        return "Something went wrong when updating the phone:" + str(exc)
+        return "Something went wrong when updating the phone: " + str(exc)
         
 def queryRows(fname = "", lname = "", asc = True):
     selectedRows = None
@@ -113,7 +113,7 @@ def queryRows(fname = "", lname = "", asc = True):
         
         return selectedRows
     except Exception as exc:
-        return "Something went wrong when selecting rows:" + str(exc)
+        return "Something went wrong when selecting contacts: " + str(exc)
 
 def deleteRowByPhone(phone):
     command = """
@@ -131,8 +131,6 @@ def deleteRowByPhone(phone):
         cursor.close()
         connection.close()
         
-        return "Deleted the row successfully."
+        return "Deleted the contact successfully."
     except Exception as exc: 
-        return "Something went wrong when deleting the row:" + str(exc)
-    
-    
+        return "Something went wrong when deleting the contact: " + str(exc)
