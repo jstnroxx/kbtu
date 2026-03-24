@@ -1,10 +1,11 @@
 from django.urls import path
-from . import views
+from . import views as apiViews
 
 urlpatterns = [
-    path('products/', views.productList, name = "ProductList"),
-    path('products/<int:id>/', views.productDetails, name = "ProductDetails"),
-    path('categories/', views.categoryList, name = "CategoryList"),
-    path('categories/<int:id>/', views.categoryDetails, name = "CategoryDetails"),
-    path('categories/<int:id>/products/', views.categoryProducts, name = "CategoryProducts"),
+    path('', apiViews.home, name = "api-home"),
+    path('products/', apiViews.getProducts, name = "product-list"),
+    path('products/<int:_id>/', apiViews.getProduct, name = "product-details"),
+    path('categories/', apiViews.getCategories, name = "category-list"),
+    path('categories/<int:_id>/', apiViews.getCategory, name = "category-details"),
+    path('categories/<int:_id>/products/', apiViews.getCategoryProducts, name = "category-products"),
 ]
