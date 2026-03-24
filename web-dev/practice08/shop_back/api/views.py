@@ -54,3 +54,4 @@ def getCategoryProducts(request, _id):
         return JsonResponse(list(products), safe = False)
     except Category.DoesNotExist:
         return JsonResponse({'error': 'Category not found.'}, status = 404)
+    
