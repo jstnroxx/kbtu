@@ -41,7 +41,7 @@ def insertPage():
         print("=" * 50)
         
         if os.path.exists("contacts.csv"):
-            with open("contacts.csv") as contacts:
+            with open("contacts.csv", encoding = "utf-8") as contacts:
                 csvReader = csv.reader(contacts)
                 
                 print(queries.insertManyRows(list(csvReader)))
@@ -89,7 +89,7 @@ def insertPage():
         print("    Phonebook Insertion")
         print("=" * 50)
         
-        print(queries.insertRow((fname, lname, phone)))
+        print(queries.upsertRow((fname, lname, phone)))
         
         print("=" * 50)
         input("Press Enter to return to the home page... ")
@@ -102,12 +102,16 @@ def modifyPage():
     print("    Phonebook Modification")
     print("=" * 50)
     
-    contactId = input("Enter contact id: ").strip()
-    
+    contactId = input("Id?: ").strip()
+        
     try:
         contactId = int(contactId)
     except:
-        contactId = -1
+        contactId = 0
+    
+    fname = input("First name?: ").strip()
+    lname = input("Last name?: ").strip()
+    phone = input("Phone number?: ").strip()
         
     newPhone = input("Enter new phone number: ").strip()
     
@@ -115,7 +119,7 @@ def modifyPage():
     print("=" * 50)
     print("    Phonebook Modification")
     print("=" * 50)
-    print(queries.updatePhone(contactId, newPhone))
+    print(queries.updatePhone(contactId, fname, lname, phone, newPhone))
     print("=" * 50)
     input("Press Enter to return to the home page... ")
 
@@ -124,52 +128,150 @@ def queryPage():
     print("=" * 50)
     print("    Phonebook Query")
     print("=" * 50)
-    
-    fname = input("First name?: ").strip()
-    lname = input("Last name?: ").strip()
-    sort = input("Sort ascending? (y/n): ").strip().lower() == "y"
-    
-    clearLog()
-    print("=" * 50)
-    print("    Phonebook Query")
+    print("    1 - Search pattern")
+    print("    2 - Search specific")
+    print("    ex - Return")
     print("=" * 50)
     
-    rows = queries.queryRows(fname, lname, sort)
+    command = input("Enter command: ").strip().lower()
     
-    if rows:
-        if type(rows) == type("abc"):
-            print(rows)
-        else:
+    if command == "1":
+        clearLog()
+        print("=" * 50)
+        print("    Phonebook Query")
+        print("=" * 50)
+        
+        pattern = input("Enter pattern: ").strip()
+        
+        PAGE_SIZE = 10
+        offset = 0
+        rows = queries.searchPattern(pattern, offset, PAGE_SIZE)
+        
+        while len(rows) > 0 and type(rows) != type("abc"):
+            clearLog()
+            print("=" * 50)
+            print(f"    Phonebook Query (Page {(offset // PAGE_SIZE) + 1})")
+            print("=" * 50)
+            
             for row in rows:
                 print(row)
-    else:
-        print("No contacts found.")
         
-    print("=" * 50)
-    input("Press Enter to return to the home page... ")
+            print("=" * 50)
+        
+            if len(rows) == PAGE_SIZE: 
+                print("    Enter - Next page")
+                print("    ex - Return")
+                print("=" * 50)
+            else:
+                input("Press Enter to return to the home page... ")
+                return
+            
+            
+            command = input("Enter command: ").strip().lower()
+            
+            if len(rows) == PAGE_SIZE and command == "":
+                offset += PAGE_SIZE
+                rows = queries.searchPattern(pattern, offset, PAGE_SIZE)
+            elif command == "ex":
+                return
+            else:
+                invalidPage()
+                
+        clearLog()
+        print("=" * 50)
+        print("    Phonebook Query")
+        print("=" * 50)
+            
+        if type(rows) == type("abc"):
+            print(rows)
+        elif offset > 0:
+            print("End of data.")
+        else:
+            print("No contacts found.")
+            
+        print("=" * 50)
+        input("Press Enter to return to the home page... ")
+    elif command == "2":
+        clearLog()
+        print("=" * 50)
+        print("    Phonebook Query")
+        print("=" * 50)
+        
+        fname = input("First name?: ").strip()
+        lname = input("Last name?: ").strip()
+        sort = input("Sort? (asc/desc): ").strip().lower() == "desc"
+        
+        clearLog()
+        print("=" * 50)
+        print("    Phonebook Query")
+        print("=" * 50)
+        
+        rows = queries.queryRows(fname, lname, sort)
+        
+        if rows:
+            if type(rows) == type("abc"):
+                print(rows)
+            else:
+                for row in rows:
+                    print(row)
+        else:
+            print("No contacts found.")
+            
+        print("=" * 50)
+        input("Press Enter to return to the home page... ")
+    elif command == "ex":
+        return
+    else:
+        invalidPage()
     
 def deletePage():
     clearLog()
     print("=" * 50)
     print("    Phonebook Deletion")
     print("=" * 50)
-    print("Enter the phone number to delete.")
+    print("    1 - Delete a contact")
+    print("    2 - Clear the contact list")
     print("    ex - Return")
     print("=" * 50)
     
-    phone = input("Phone number: ").strip()
+    command = input("Enter command: ").strip().lower()
     
-    if phone.lower() == "ex":
-        return
-    else:
+    if command == "1":
         clearLog()
         print("=" * 50)
         print("    Phonebook Deletion")
         print("=" * 50)
-        print(queries.deleteRowByPhone(phone))
+        
+        contactId = input("Id?: ").strip()
+        
+        try:
+            contactId = int(contactId)
+        except:
+            contactId = 0
+        
+        fname = input("First name?: ").strip()
+        lname = input("Last name?: ").strip()
+        phone = input("Phone number?: ").strip()
+        
+        clearLog()
+        print("=" * 50)
+        print("    Phonebook Deletion")
+        print("=" * 50)
+        print(queries.deleteRow(contactId, fname, lname, phone))
         print("=" * 50)
         input("Press Enter to return to the home page... ")
-        
+    elif command == "2":
+        clearLog()
+        print("=" * 50)
+        print("    Phonebook Deletion")
+        print("=" * 50)
+        print(queries.clearTable())
+        print("=" * 50)
+        input("Press Enter to return to the home page... ")
+    elif command == "ex":
+        return
+    else:
+        invalidPage()
     
 def invalidPage():
     clearLog()
@@ -201,4 +303,5 @@ def main():
             invalidPage()
 
 if __name__ == "__main__":
-    main()
+    if initPhonebook():
+        main()
