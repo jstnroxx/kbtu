@@ -34,10 +34,6 @@ def clearTable():
         return "Something went wrong when clearing the table:\n" + str(exc)
 
 def upsertRow(row):
-    # command = """
-    #     INSERT INTO users(firstname, lastname, phone) VALUES(%s, %s, %s);
-    # """
-    
     command = """
         CREATE OR REPLACE PROCEDURE upsertContact(fname VARCHAR, lname VARCHAR, phoneNum VARCHAR)
         LANGUAGE plpgsql
