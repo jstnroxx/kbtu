@@ -19,5 +19,17 @@ class CategoryViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 class ProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        sortType = self.request.query_params.get("sort")
+            
+        if sortType is not None:
+            try:
+                queryset = queryset.order_by(sortType)
+            except:
+                queryset = queryset
+        
+        return queryset
+        
     serializer_class = ProductSerializer
+    
