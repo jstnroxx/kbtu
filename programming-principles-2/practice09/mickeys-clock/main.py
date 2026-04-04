@@ -58,11 +58,13 @@ while running:
     
     currentTime = clock.getCurrentTime()
     
+    minuteAngle = 215 - ((currentTime["minutes"] + currentTime["seconds"] / 60) * 6)
+    screen.blit(*utility.rotateHand(minuteHand, (centerX, centerY), (86, 0), minuteAngle))
+    
     secondAngle = 150 - ((currentTime["seconds"] + currentTime["milliseconds"] / 1000) * 6)
     screen.blit(*utility.rotateHand(secondHand, (centerX, centerY), (0, 0), secondAngle))
     
-    minuteAngle = 215 - ((currentTime["minutes"] + currentTime["seconds"] / 60) * 6)
-    screen.blit(*utility.rotateHand(minuteHand, (centerX, centerY), (86, 0), minuteAngle))
+    pygame.draw.circle(screen, (0, 0, 0), (centerX, centerY), 15)
     
     for number in enumerate(numbers):
         screen.blit(number[1], numberPositions[number[0]])
