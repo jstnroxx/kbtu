@@ -3,6 +3,7 @@ import pygame
 def drawBall(canvas, color, position, radius):
     pygame.draw.circle(canvas, color, position, radius)
     
+# Move the ball according to the key pressed with respect to the bounds
 def ballMovement(canvasSize, ballRadius, pressedKeys, currentCoordinates, step):
     if pressedKeys[pygame.K_w] or pressedKeys[pygame.K_UP]: 
         if currentCoordinates["Y"] - step - ballRadius >= 0: 
