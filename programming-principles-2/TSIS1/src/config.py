@@ -1,8 +1,14 @@
+from pathlib import Path
 from configparser import ConfigParser
 
+fileDirectoryPath = Path(__file__).parent
+
+# Create database configurations
 def loadConfig(filename = "database.ini", section = "postgresql"):
+    configFilePath = fileDirectoryPath / filename
+    
     parser = ConfigParser()
-    parser.read(filename)
+    parser.read(configFilePath)
     
     config = {}
     
@@ -16,6 +22,7 @@ def loadConfig(filename = "database.ini", section = "postgresql"):
     
     return config
 
+# Show database configurations if the file is run directly
 if __name__ == "__main__":
     config = loadConfig()
     print(config)
