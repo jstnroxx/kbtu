@@ -19,6 +19,3 @@ urlpatterns = [
     path("categories/<int:categoryId>/", apiViews.CategoryDetailsAPIView.as_view(), name = "category-details"),
     path("categories/<int:categoryId>/products/", apiViews.CategoryProductsAPIView.as_view(), name = "category-products")
 ]
-
-
-

@@ -41,6 +41,13 @@ INSTALLED_APPS = [
     'rest_framework',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES' : (
+        'api.renderers.CustomRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer'
+    )
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
