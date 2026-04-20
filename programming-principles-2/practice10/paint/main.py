@@ -17,11 +17,13 @@ def main():
     screen.fill(BG_COLOR)
     
     # a separate canvas to preview shapes
-    viewCanvas = pygame.Surface((640, 480))
-    viewCanvas.fill(BG_COLOR)
+    permCanvas = pygame.Surface((640, 480))
+    permCanvas.fill(BG_COLOR)
     
     # shape drag start position
     shapeStartPos = None
+    
+    lastPos = None
     
     while True:
         
@@ -71,38 +73,39 @@ def main():
                 if tool in ('rectangle', 'circle'):
                     shapeStartPos = event.pos
                 else:
-                    point = {
-                        "color" : mode if tool != 'eraser' else BG_COLOR,
-                        "pos" : event.pos,
-                        "radius" : radius
-                    }
+                    color = getColor(mode) if tool == 'brush' else BG_COLOR
                     
-                    drawPoint(viewCanvas, point)
-                
-            if mousePressed[0] and event.type == pygame.MOUSEMOTION:
-                if tool == 'brush':
-                    point = {
+                    drawPoint(permCanvas, {
                         "color": mode,
                         "pos": event.pos,
                         "radius": radius
-                    }
+                    })
                     
-                    drawPoint(viewCanvas, point)
-                elif tool == 'eraser':
-                    point = {
-                        "color": BG_COLOR,
-                        "pos": event.pos,
-                        "radius": radius
-                    }
+                    lastPos = event.pos
+                
+            if mousePressed[0] and event.type == pygame.MOUSEMOTION:
+                if tool in ('brush', 'eraser'):
+                    color = getColor(mode) if tool == 'brush' else BG_COLOR
                     
-                    drawPoint(viewCanvas, point)
+                    if lastPos is not None:
+                        drawLineBetween(permCanvas, lastPos, event.pos, color, radius)
+                    else:
+                        drawPoint(permCanvas, {
+                            "color": mode,
+                            "pos": event.pos,
+                            "radius": radius
+                        })
+                        
+                    lastPos = event.pos
                     
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 if tool in ('rectangle', 'circle') and shapeStartPos is not None:
-                    drawShape(viewCanvas, tool, shapeStartPos, event.pos, mode, radius)
+                    drawShape(permCanvas, tool, shapeStartPos, event.pos, mode, radius)
                     shapeStartPos = None
                     
-            screen.blit(viewCanvas, (0, 0))
+                lastPos = None
+                    
+            screen.blit(permCanvas, (0, 0))
             
             if shapeStartPos is not None and mousePressed[0] and tool in ('rectangle', 'circle'):
                 currentPos = pygame.mouse.get_pos()
@@ -148,19 +151,36 @@ def drawShape(surface, tool, start, end, mode, radius, preview = False):
     if tool == 'rectangle':
         x = min(start[0], end[0])
         y = min(start[1], end[1])
-        w = abs(end[0] - start[0])
-        h = abs(end[1] - start[1])
+        wid = abs(end[0] - start[0])
+        hei = abs(end[1] - start[1])
         
-        if w > 0 and h > 0:
-            pygame.draw.rect(surface, color, (x, y, w, h), width)
+        if wid > 0 and hei > 0:
+            pygame.draw.rect(surface, color, (x, y, wid, hei), width)
 
     elif tool == 'circle':
-        cx = (start[0] + end[0]) // 2
-        cy = (start[1] + end[1]) // 2
-        r = int(((end[0] - start[0]) ** 2 + (end[1] - start[1]) ** 2) ** 0.5 // 2)
+        centerX = (start[0] + end[0]) // 2
+        centerY = (start[1] + end[1]) // 2
+        radius = int(((end[0] - start[0]) ** 2 + (end[1] - start[1]) ** 2) ** 0.5 // 2)
         
-        if r > 0:
-            pygame.draw.circle(surface, color, (cx, cy), r, width)
+        if radius > 0:
+            pygame.draw.circle(surface, color, (centerX, centerY), radius, width)
+            
+
+def drawLineBetween(surface, start, end, color, radius):
+    dx = start[0] - end[0]
+    dy = start[1] - end[1]
+    
+    iterations = max(abs(dx), abs(dy))
+    
+    if iterations == 0:
+        return
+    for i in range(iterations):
+        progress = i / iterations
+        
+        x = int((1 - progress) * start[0] + progress * end[0])
+        y = int((1 - progress) * start[1] + progress * end[1])
+        
+        pygame.draw.circle(surface, color, (x, y), radius)
         
     
 main()
