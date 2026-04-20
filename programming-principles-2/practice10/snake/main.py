@@ -38,21 +38,24 @@ def main():
     FPSCLOCK = pygame.time.Clock()
     DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
     BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
-    pygame.display.set_caption('Wormy')
+    pygame.display.set_caption('Snake')
 
     showStartScreen()
     while True:
         runGame()
         showGameOverScreen()
 
+# Set a random start point.
+startx = random.randint(5, CELLWIDTH - 6)
+starty = random.randint(5, CELLHEIGHT - 6)
+wormCoords = [
+    {'x': startx,     'y': starty},
+    {'x': startx - 1, 'y': starty},
+    {'x': startx - 2, 'y': starty}
+]
 
 def runGame():
-    # Set a random start point.
-    startx = random.randint(5, CELLWIDTH - 6)
-    starty = random.randint(5, CELLHEIGHT - 6)
-    wormCoords = [{'x': startx,     'y': starty},
-                  {'x': startx - 1, 'y': starty},
-                  {'x': startx - 2, 'y': starty}]
+    global wormCoords
     direction = RIGHT
 
     # Start the apple in a random place.
@@ -102,7 +105,7 @@ def runGame():
         drawGrid()
         drawWorm(wormCoords)
         drawApple(apple)
-        drawScore(len(wormCoords) - 3)
+        drawScoreLevel(len(wormCoords) - 3)
         pygame.display.update()
         FPSCLOCK.tick(FPS)
 
@@ -127,8 +130,8 @@ def checkForKeyPress():
 
 def showStartScreen():
     titleFont = pygame.font.Font('freesansbold.ttf', 100)
-    titleSurf1 = titleFont.render('Wormy!', True, WHITE, DARKGREEN)
-    titleSurf2 = titleFont.render('Wormy!', True, GREEN)
+    titleSurf1 = titleFont.render('Snake!', True, WHITE, DARKGREEN)
+    titleSurf2 = titleFont.render('Snake!', True, GREEN)
 
     degrees1 = 0
     degrees2 = 0
@@ -159,9 +162,15 @@ def terminate():
     pygame.quit()
     sys.exit()
 
-
+# determine next apple position which is not wall or snake's body
 def getRandomLocation():
-    return {'x': random.randint(0, CELLWIDTH - 1), 'y': random.randint(0, CELLHEIGHT - 1)}
+    global wormCoords
+    randomLocation = {'x': random.randint(0, CELLWIDTH - 1), 'y': random.randint(0, CELLHEIGHT - 1)}
+    
+    while randomLocation in wormCoords:
+        randomLocation = {'x': random.randint(0, CELLWIDTH - 1), 'y': random.randint(0, CELLHEIGHT - 1)}
+    
+    return randomLocation
 
 
 def showGameOverScreen():
@@ -180,16 +189,55 @@ def showGameOverScreen():
     pygame.time.wait(500)
     checkForKeyPress() # clear out any key presses in the event queue
 
+    startx = random.randint(5, CELLWIDTH - 6)
+    starty = random.randint(5, CELLHEIGHT - 6)
+    
+    global wormCoords
+    wormCoords = [
+        {'x': startx,     'y': starty},
+        {'x': startx - 1, 'y': starty},
+        {'x': startx - 2, 'y': starty}
+    ]
+    
+    global FPS
+    FPS = 15
+
     while True:
         if checkForKeyPress():
             pygame.event.get() # clear event queue
             return
-
-def drawScore(score):
+        
+# update FPS (affects game speed) according to level (15 + (1 for each level)) but not greater than 60
+def speedupSnake(level):
+    global FPS
+    
+    if not FPS >= 60:
+    
+        if level > 1:
+            NEWFPS = 15 + level - 1
+            
+            if NEWFPS == FPS:
+                return
+            else:
+                FPS = NEWFPS
+        
+# draw level and score info text
+def drawScoreLevel(score):
+    snakeLevel = score // 3 + 1
+    
+    levelSurf = BASICFONT.render('Level: %s' % (snakeLevel), True, WHITE)
     scoreSurf = BASICFONT.render('Score: %s' % (score), True, WHITE)
+    
+    levelRect = levelSurf.get_rect()
     scoreRect = scoreSurf.get_rect()
-    scoreRect.topleft = (WINDOWWIDTH - 120, 10)
+    
+    levelRect.topleft = (WINDOWWIDTH - 120, 10)
+    scoreRect.topleft = (WINDOWWIDTH - 120, levelSurf.get_height() + 10)
+    
+    DISPLAYSURF.blit(levelSurf, levelRect)
     DISPLAYSURF.blit(scoreSurf, scoreRect)
+    
+    speedupSnake(snakeLevel)
 
 
 def drawWorm(wormCoords):
