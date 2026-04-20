@@ -22,6 +22,8 @@ RED       = (255,   0,   0)
 GREEN     = (  0, 255,   0)
 DARKGREEN = (  0, 155,   0)
 DARKGRAY  = ( 40,  40,  40)
+PURPLE    = (180,   0, 255)
+ORANGE    = (255, 140,   0)
 BGCOLOR = BLACK
 
 UP = 'up'
@@ -30,6 +32,12 @@ LEFT = 'left'
 RIGHT = 'right'
 
 HEAD = 0 # syntactic sugar: index of the worm's head
+
+FOOD_TYPES = [
+    {'color' : RED, 'points' : 1, 'timer' : None},
+    {'color' : ORANGE, 'points' : 2, 'timer' : 90},
+    {'color' : PURPLE, 'points' : 3, 'timer' : 60}
+]
 
 def main():
     global FPSCLOCK, DISPLAYSURF, BASICFONT
@@ -59,7 +67,7 @@ def runGame():
     direction = RIGHT
 
     # Start the apple in a random place.
-    apple = getRandomLocation()
+    food = spawnFood()
 
     while True: # main game loop
         for event in pygame.event.get(): # event handling loop
@@ -83,11 +91,16 @@ def runGame():
         for wormBody in wormCoords[1:]:
             if wormBody['x'] == wormCoords[HEAD]['x'] and wormBody['y'] == wormCoords[HEAD]['y']:
                 return # game over
+            
+        # remove expired food
+        food = tickFood(food)
 
-        # check if worm has eaten an apply
-        if wormCoords[HEAD]['x'] == apple['x'] and wormCoords[HEAD]['y'] == apple['y']:
-            # don't remove worm's tail segment
-            apple = getRandomLocation() # set a new apple somewhere
+        # check if worm has eaten food
+        if wormCoords[HEAD]['x'] == food['x'] and wormCoords[HEAD]['y'] == food['y']:
+            for _ in range(food['points'] - 1):
+                wormCoords.append(wormCoords[-1])
+            
+            food = spawnFood() # set a new food somewhere
         else:
             del wormCoords[-1] # remove worm's tail segment
 
@@ -104,10 +117,42 @@ def runGame():
         DISPLAYSURF.fill(BGCOLOR)
         drawGrid()
         drawWorm(wormCoords)
-        drawApple(apple)
+        drawFood(food)
         drawScoreLevel(len(wormCoords) - 3)
         pygame.display.update()
         FPSCLOCK.tick(FPS)
+        
+def spawnFood():
+    foodType = random.choice(FOOD_TYPES)
+    
+    pos = getRandomLocation()
+    
+    return {
+        'x' : pos['x'],
+        'y' : pos['y'],
+        'color' : foodType['color'],
+        'points' : foodType['points'],
+        'timer' : foodType['timer']
+    }
+    
+def tickFood(food):
+    if food['timer'] and food['timer'] > 0:
+        food['timer'] -= 1
+    elif food['timer'] == 0:
+        return spawnFood()
+        
+    return food
+
+def drawFood(food):
+    x = food['x'] * CELLSIZE
+    y = food['y'] * CELLSIZE
+    pygame.draw.rect(DISPLAYSURF, food['color'], (x, y, CELLSIZE, CELLSIZE))
+    
+    if food['timer'] is not None:
+        maxTimer = next(f['timer'] for f in FOOD_TYPES if f['points'] == food['points'])
+        ratio = food['timer'] / maxTimer
+        barW = int(CELLSIZE * ratio)
+        pygame.draw.rect(DISPLAYSURF, WHITE, (x, y + CELLSIZE - 3, barW, 3))
 
 def drawPressKeyMsg():
     pressKeySurf = BASICFONT.render('Press a key to play.', True, DARKGRAY)
@@ -248,14 +293,6 @@ def drawWorm(wormCoords):
         pygame.draw.rect(DISPLAYSURF, DARKGREEN, wormSegmentRect)
         wormInnerSegmentRect = pygame.Rect(x + 4, y + 4, CELLSIZE - 8, CELLSIZE - 8)
         pygame.draw.rect(DISPLAYSURF, GREEN, wormInnerSegmentRect)
-
-
-def drawApple(coord):
-    x = coord['x'] * CELLSIZE
-    y = coord['y'] * CELLSIZE
-    appleRect = pygame.Rect(x, y, CELLSIZE, CELLSIZE)
-    pygame.draw.rect(DISPLAYSURF, RED, appleRect)
-
 
 def drawGrid():
     for x in range(0, WINDOWWIDTH, CELLSIZE): # draw vertical lines
