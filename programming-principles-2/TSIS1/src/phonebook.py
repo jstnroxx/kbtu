@@ -281,3 +281,43 @@ def deleteContactByPhone(phone):
     finally:
         if connection:
             connection.close()
+            
+def searchByPhone(prefix):
+    try:
+        global connection
+        connection = connect()
+        
+        with connection.cursor() as cursor:
+            searchPattern = f"{prefix}%"
+            
+            cursor.execute(readFromSQL("procedures.sql", "searchByPhone"), (searchPattern,))
+                    
+            return cursor.fetchall()
+                    
+        connection.commit()
+        connection.close()
+    except Exception as Err:
+        return Err
+        
+    finally:
+        if connection:
+            connection.close()
+            
+def searchByName(name):
+    try:
+        global connection
+        connection = connect()
+        
+        with connection.cursor() as cursor:
+            cursor.execute(readFromSQL("procedures.sql", "searchByName"), (name,))
+                    
+            return cursor.fetchall()
+                    
+        connection.commit()
+        connection.close()
+    except Exception as Err:
+        return Err
+        
+    finally:
+        if connection:
+            connection.close()

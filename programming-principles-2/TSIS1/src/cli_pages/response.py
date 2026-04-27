@@ -8,5 +8,5 @@ def view(header, message):
     print(message)
     print("=" * 50)
     
-    input("Press Enter to continue...")
+    input("Press Enter to continue... ")
         

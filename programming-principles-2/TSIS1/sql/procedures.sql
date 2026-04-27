@@ -37,3 +37,15 @@ DELETE FROM contacts WHERE id = %s;
 
 --@deleteContactByPhone
 DELETE FROM contacts USING phones WHERE phones.contact_id = contacts.id AND phones.id = %s;
+
+--@searchByPhone
+SELECT c.name, p.phone, p.type
+FROM contacts c
+INNER JOIN phones p ON c.id = p.contact_id
+WHERE p.phone LIKE %s;
+
+--@searchByName
+SELECT c.name, p.phone, p.type
+FROM contacts c
+INNER JOIN phones p ON c.id = p.contact_id
+WHERE c.name ILIKE %s;
