@@ -108,3 +108,42 @@ END;
 $$;
 
 CALL upsert_contact_with_phone(%(groupName)s, %(contactName)s, %(email)s, %(birthday)s, %(phone)s, %(phoneType)s);
+
+--@paginatedContacts
+CREATE OR REPLACE FUNCTION get_all_contacts_full(
+    p_limit INTEGER DEFAULT 10,
+    p_offset INTEGER DEFAULT 0
+)
+RETURNS TABLE(
+    contact_id INTEGER,
+    contact_name VARCHAR,
+    contact_email VARCHAR,
+    birthday DATE,
+    group_name VARCHAR,
+    phone_number VARCHAR,
+    phone_type VARCHAR
+) AS $$
+BEGIN
+    RETURN QUERY 
+    WITH all_data AS (
+        SELECT 
+            c.id,
+            c.name,
+            c.email,
+            c.birthday,
+            g.name AS g_name,
+            ph.phone,
+            ph.type
+        FROM contacts c
+        INNER JOIN groups g ON c.group_id = g.id
+        LEFT JOIN phones ph ON c.id = ph.contact_id
+    )
+    SELECT *
+    FROM all_data
+    ORDER BY id ASC
+    LIMIT p_limit
+    OFFSET p_offset;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM get_all_contacts_full(10, %s);

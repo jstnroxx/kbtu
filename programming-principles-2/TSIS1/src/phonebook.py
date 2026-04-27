@@ -370,3 +370,22 @@ def upsertContact(groupName, contactName, email, birthday, phone, phoneType):
     finally:
         if connection:
             connection.close()
+            
+def getPaginatedContacts(offset = 0):
+    try:
+        global connection
+        connection = connect()
+        
+        with connection.cursor() as cursor:
+            cursor.execute(readFromSQL("procedures.sql", "paginatedContacts"), (offset,))
+                    
+            return cursor.fetchall()
+                    
+        connection.commit()
+        connection.close()
+    except Exception as Err:
+        return Err
+        
+    finally:
+        if connection:
+            connection.close()
