@@ -67,18 +67,44 @@ $$ LANGUAGE plpgsql;
 SELECT * FROM get_contacts_by_pattern(%s);
 
 --@upsertContact
-WITH new_group AS (
-    INSERT INTO groups (name) 
-    VALUES (%(groupName)s) 
-    ON CONFLICT (name) DO UPDATE SET name = EXCLUDED.name
-    RETURNING id
-),
-new_contact AS (
-    INSERT INTO contacts (name, email, birthday, group_id)
-    SELECT %(contactName)s, %(email)s, %(birthday)s, id 
-    FROM new_group
-    RETURNING id
+CREATE OR REPLACE PROCEDURE upsert_contact_with_phone(
+    p_group_name TEXT,
+    p_contact_name TEXT,
+    p_email TEXT,
+    p_birthday DATE,
+    p_phone TEXT,
+    p_phone_type TEXT
 )
-INSERT INTO phones (contact_id, phone, type)
-SELECT id, %(phone)s, %(phoneType)s 
-FROM new_contact;
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_group_id INTEGER;
+    v_contact_id INTEGER;
+BEGIN
+    SELECT id INTO v_group_id FROM groups WHERE name = p_group_name;
+    IF v_group_id IS NULL THEN
+        INSERT INTO groups (name) VALUES (p_group_name) RETURNING id INTO v_group_id;
+    END IF;
+
+    SELECT id INTO v_contact_id FROM contacts WHERE name = p_contact_name;
+
+    IF v_contact_id IS NOT NULL THEN
+        UPDATE contacts 
+        SET email = p_email, 
+            birthday = p_birthday, 
+            group_id = v_group_id 
+        WHERE id = v_contact_id;
+        
+        DELETE FROM phones WHERE contact_id = v_contact_id;
+    ELSE
+        INSERT INTO contacts (name, email, birthday, group_id)
+        VALUES (p_contact_name, p_email, p_birthday, v_group_id)
+        RETURNING id INTO v_contact_id;
+    END IF;
+
+    INSERT INTO phones (contact_id, phone, type)
+    VALUES (v_contact_id, p_phone, p_phone_type);
+END;
+$$;
+
+CALL upsert_contact_with_phone(%(groupName)s, %(contactName)s, %(email)s, %(birthday)s, %(phone)s, %(phoneType)s);
