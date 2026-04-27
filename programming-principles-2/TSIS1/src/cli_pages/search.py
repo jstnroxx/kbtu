@@ -11,6 +11,7 @@ def view():
     print("Commands:")
     print("    1 - Search contacts by name")
     print("    2 - Search contacts by phone prefix")
+    print("    3 - Search contacts by pattern")
     print("    re - Return")
     print("=" * 50)
     
@@ -38,6 +39,21 @@ def view():
         phone = input("\nEnter phone prefix: ").strip()
         
         output = phonebook.searchByPhone(phone)
+        
+        formatted = ""
+        
+        if type(output) == type("abc"):    
+            formatted = output
+        elif len(output) > 0:
+            formatted = "\n".join(str(row) for row in output)
+        else:
+            formatted = "No data found."
+        
+        response.view("Search", formatted)
+    elif command == "3":
+        pattern = input("\nEnter pattern: ").strip()
+        
+        output = phonebook.searchByPattern(pattern)
         
         formatted = ""
         

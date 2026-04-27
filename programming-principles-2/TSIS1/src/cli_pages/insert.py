@@ -10,6 +10,7 @@ def view():
     print("=" * 50)
     print("Commands:")
     print("    1 - Insert contact manually")
+    print("    2 - Upsert contact")
     print("    re - Return")
     print("=" * 50)
     
@@ -30,6 +31,20 @@ def view():
         
         if output == True:
             response.view("Insert", "Successfully inserted contact.")
+        else:
+            response.view("Insert", output)
+    elif command == "2":
+        group = input("\nGroup name: ").strip()
+        name = input("Contact name: ").strip()
+        email = input("Contact email: ").strip()
+        birthday = input("Contact birthday (YYYY-MM-DD):").strip()
+        phone = input("Phone number: ").strip()
+        phoneType = input("Phone type (home, work, mobile): ").strip()
+        
+        output = phonebook.upsertContact(group, name, email, birthday, phone, phoneType)
+        
+        if output == True:
+            response.view("Insert", "Successfully upserted contact.")
         else:
             response.view("Insert", output)
     else:

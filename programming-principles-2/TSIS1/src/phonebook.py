@@ -321,3 +321,52 @@ def searchByName(name):
     finally:
         if connection:
             connection.close()
+            
+def searchByPattern(pattern):
+    try:
+        global connection
+        connection = connect()
+        
+        with connection.cursor() as cursor:
+            cursor.execute(readFromSQL("procedures.sql", "searchByPattern"), (pattern,))
+                    
+            return cursor.fetchall()
+                    
+        connection.commit()
+        connection.close()
+    except Exception as Err:
+        return Err
+        
+    finally:
+        if connection:
+            connection.close()
+            
+def upsertContact(groupName, contactName, email, birthday, phone, phoneType):
+    try:
+        global connection
+        connection = connect()
+        
+        if (groupName and contactName and email and birthday and phone and phoneType):
+            with connection.cursor() as cursor:
+                cursor.execute(readFromSQL("procedures.sql", "upsertContact"), {
+                    'groupName': groupName,
+                    'contactName': contactName,
+                    'email': email,
+                    'birthday': birthday,
+                    'phone': phone,
+                    'phoneType': phoneType
+                })
+        else:
+            return "Please provide all fields."
+                    
+        connection.commit()
+        connection.close()
+        
+        return True
+            
+    except Exception as Err:
+        return Err
+        
+    finally:
+        if connection:
+            connection.close()
