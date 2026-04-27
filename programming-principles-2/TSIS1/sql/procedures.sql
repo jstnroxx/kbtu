@@ -28,3 +28,12 @@ SELECT
 	) AS phones
 FROM contacts c
 LEFT JOIN groups g ON c.group_id = g.id;
+
+--@updateContact
+UPDATE contacts SET name = %s WHERE id = %s;
+
+--@deleteContactByName
+DELETE FROM contacts WHERE id = %s;
+
+--@deleteContactByPhone
+DELETE FROM contacts USING phones WHERE phones.contact_id = contacts.id AND phones.id = %s;

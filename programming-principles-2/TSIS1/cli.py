@@ -1,6 +1,6 @@
 from src import phonebook
 
-from src.cli_pages import home, invalid, insert, import_export
+from src.cli_pages import home, invalid, insert, import_export, modify, delete
 from src.utility import clearLog
         
 # Main CLI loop
@@ -16,11 +16,11 @@ def main():
         elif command == "1":
             pass
         elif command == "2":
-            pass
+            modify.view()
         elif command == "3":
             insert.view()
         elif command == "4":
-            pass
+            delete.view()
         elif command == "5":
             import_export.view()
         else:

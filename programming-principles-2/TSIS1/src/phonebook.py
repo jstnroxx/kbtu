@@ -203,3 +203,81 @@ def insertContact(groupName, contactName, email, birthday, phone, phoneType):
     finally:
         if connection:
             connection.close()
+            
+def updateContact(oldName, newName):
+    try:
+        global connection
+        connection = connect()
+        
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT id FROM contacts WHERE name = %s", (oldName,))
+            existence = cursor.fetchone()
+            
+            if existence:
+                cursor.execute(readFromSQL("procedures.sql", "updateContact"), (newName, existence))
+            else:
+                return "No contact with such name found."
+                    
+        connection.commit()
+        connection.close()
+        
+        return True
+            
+    except Exception as Err:
+        return Err
+        
+    finally:
+        if connection:
+            connection.close()
+            
+def deleteContactByName(name):
+    try:
+        global connection
+        connection = connect()
+        
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT id FROM contacts WHERE name = %s", (name,))
+            existence = cursor.fetchone()
+            
+            if existence:
+                cursor.execute(readFromSQL("procedures.sql", "deleteContactByName"), (existence,))
+            else:
+                return "No contact with such name found."
+                    
+        connection.commit()
+        connection.close()
+        
+        return True
+            
+    except Exception as Err:
+        return Err
+        
+    finally:
+        if connection:
+            connection.close()
+            
+def deleteContactByPhone(phone):
+    try:
+        global connection
+        connection = connect()
+        
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT id FROM phones WHERE phone = %s", (phone,))
+            existence = cursor.fetchone()
+            
+            if existence:
+                cursor.execute(readFromSQL("procedures.sql", "deleteContactByPhone"), (existence,))
+            else:
+                return "No contact with such phone found."
+                    
+        connection.commit()
+        connection.close()
+        
+        return True
+            
+    except Exception as Err:
+        return Err
+        
+    finally:
+        if connection:
+            connection.close()
