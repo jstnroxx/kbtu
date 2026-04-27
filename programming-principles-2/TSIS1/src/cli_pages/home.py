@@ -1,4 +1,4 @@
-from ..utility import clearLog
+from src.utility import clearLog
 
 def view():
     clearLog()

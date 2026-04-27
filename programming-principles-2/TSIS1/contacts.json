@@ -1,0 +1,182 @@
+[
+    {
+        "name": "Jessica Lopez",
+        "email": "jessica21@example.com",
+        "birthday": "1993-05-28",
+        "group_name": "Family",
+        "phones": [
+            {
+                "phone": "+1-746-174-8447",
+                "type": "home"
+            }
+        ]
+    },
+    {
+        "name": "Barbara Davis",
+        "email": "barbara14@example.com",
+        "birthday": "1992-07-13",
+        "group_name": "Family",
+        "phones": [
+            {
+                "phone": "+1-209-841-5764",
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "name": "William Miller",
+        "email": "william38@example.com",
+        "birthday": "1991-09-17",
+        "group_name": "Family",
+        "phones": [
+            {
+                "phone": "+1-868-144-5912",
+                "type": "work"
+            }
+        ]
+    },
+    {
+        "name": "Elizabeth Jones",
+        "email": "elizabeth76@example.com",
+        "birthday": "1974-10-20",
+        "group_name": "Family",
+        "phones": [
+            {
+                "phone": "+1-345-547-4302",
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "name": "Thomas Gonzalez",
+        "email": "thomas36@example.com",
+        "birthday": "1998-02-22",
+        "group_name": "Friend",
+        "phones": [
+            {
+                "phone": "+1-899-749-8142",
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "name": "Joseph Hernandez",
+        "email": "joseph41@example.com",
+        "birthday": "1985-02-21",
+        "group_name": "Friend",
+        "phones": [
+            {
+                "phone": "+1-875-459-8776",
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "name": "Sarah Wilson",
+        "email": "sarah97@example.com",
+        "birthday": "2005-05-07",
+        "group_name": "Work",
+        "phones": [
+            {
+                "phone": "+1-615-860-9564",
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "name": "Robert Johnson",
+        "email": "robert67@example.com",
+        "birthday": "1999-02-28",
+        "group_name": "Work",
+        "phones": [
+            {
+                "phone": "+1-947-526-7568",
+                "type": "home"
+            }
+        ]
+    },
+    {
+        "name": "Charles Anderson",
+        "email": "charles76@example.com",
+        "birthday": "1970-08-17",
+        "group_name": "Other",
+        "phones": [
+            {
+                "phone": "+1-716-939-1356",
+                "type": "home"
+            }
+        ]
+    },
+    {
+        "name": "Susan Martinez",
+        "email": "susan94@example.com",
+        "birthday": "1988-01-20",
+        "group_name": "Other",
+        "phones": [
+            {
+                "phone": "+1-755-442-3689",
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "name": "David Rodriguez",
+        "email": "david37@example.com",
+        "birthday": "2004-07-17",
+        "group_name": "Other",
+        "phones": [
+            {
+                "phone": "+1-255-966-3045",
+                "type": "home"
+            }
+        ]
+    },
+    {
+        "name": "Michael Brown",
+        "email": "michael81@example.com",
+        "birthday": "1984-03-22",
+        "group_name": "Other",
+        "phones": [
+            {
+                "phone": "+1-430-834-3736",
+                "type": "mobile"
+            }
+        ]
+    },
+    {
+        "name": "Linda Williams",
+        "email": "linda17@example.com",
+        "birthday": "2003-12-07",
+        "group_name": "Other",
+        "phones": [
+            {
+                "phone": "+1-773-890-7509",
+                "type": "home"
+            }
+        ]
+    },
+    {
+        "name": "Maria Garcia",
+        "email": "maria28@example.com",
+        "birthday": "1985-09-26",
+        "group_name": "Other",
+        "phones": [
+            {
+                "phone": "+1-853-686-9835",
+                "type": "home"
+            }
+        ]
+    },
+    {
+        "name": "James Smith",
+        "email": "james44@example.com",
+        "birthday": "1981-07-29",
+        "group_name": "Other",
+        "phones": [
+            {
+                "phone": "+1-567-351-4987",
+                "type": "mobile"
+            }
+        ]
+    }
+]
