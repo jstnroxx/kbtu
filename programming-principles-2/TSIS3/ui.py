@@ -128,7 +128,7 @@ def username_entry_screen(surface: pygame.Surface, clock: pygame.time.Clock) -> 
 
         _draw_background(surface)
 
-        title = fonts["title"].render("ENTER YOUR NAME", True, ACCENT)
+        title = fonts["large"].render("ENTER YOUR NAME", True, ACCENT)
         surface.blit(title, title.get_rect(center=(surface.get_width() // 2, 180)))
 
         # Input box
@@ -173,8 +173,8 @@ def main_menu_screen(surface: pygame.Surface, clock: pygame.time.Clock) -> str:
 
         _draw_background(surface)
 
-        title = fonts["title"].render("ROAD RACER", True, ACCENT)
-        sub   = fonts["small"].render("Dodge traffic. Collect coins. Survive.", True, GRAY)
+        title = fonts["title"].render("RACER", True, ACCENT)
+        sub   = fonts["small"].render("Dodge. Collect. Survive.", True, GRAY)
         surface.blit(title, title.get_rect(center=(cx, 120)))
         surface.blit(sub,   sub.get_rect(center=(cx, 175)))
 
@@ -195,7 +195,7 @@ def settings_screen(surface: pygame.Surface, clock: pygame.time.Clock,
 
     # Difficulty cycle button
     diff_btn  = Button(pygame.Rect(cx - 80, 360, 160, 45), "", fonts["medium"], color=BLUE)
-    sound_btn = Button(pygame.Rect(cx - 80, 280, 160, 45), "", fonts["medium"])
+    sound_btn = Button(pygame.Rect(cx - 80, 260, 160, 45), "", fonts["medium"])
 
     while True:
         clock.tick(60)
@@ -207,6 +207,7 @@ def settings_screen(surface: pygame.Surface, clock: pygame.time.Clock,
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 save_settings(settings)
+                
                 return settings
             if sound_btn.is_clicked(event):
                 settings["sound"] = not settings["sound"]
@@ -215,6 +216,7 @@ def settings_screen(surface: pygame.Surface, clock: pygame.time.Clock,
                 settings["difficulty"] = DIFFICULTY_OPTIONS[(idx + 1) % len(DIFFICULTY_OPTIONS)]
             if back_btn.is_clicked(event):
                 save_settings(settings)
+                
                 return settings
 
         _draw_background(surface)
@@ -223,7 +225,7 @@ def settings_screen(surface: pygame.Surface, clock: pygame.time.Clock,
         surface.blit(title, title.get_rect(center=(cx, 140)))
 
         sound_lbl = fonts["medium"].render("Audio", True, GRAY)
-        surface.blit(sound_lbl, sound_lbl.get_rect(center=(cx, 250)))
+        surface.blit(sound_lbl, sound_lbl.get_rect(center=(cx, 230)))
         sound_btn.draw(surface)
 
         diff_lbl = fonts["medium"].render("Difficulty", True, GRAY)
@@ -231,7 +233,7 @@ def settings_screen(surface: pygame.Surface, clock: pygame.time.Clock,
         diff_btn.draw(surface)
 
         hint = fonts["small"].render("(affects starting speed & spawn rate)", True, DARK_GRAY)
-        surface.blit(hint, hint.get_rect(center=(cx, 415)))
+        surface.blit(hint, hint.get_rect(center=(cx, 430)))
 
         back_btn.draw(surface)
         pygame.display.flip()
@@ -313,7 +315,7 @@ def leaderboard_screen(surface: pygame.Surface, clock: pygame.time.Clock) -> Non
 
         # Header row
         header_y = 100
-        cols = [30, 65, 195, 290, 360]
+        cols = [20, 65, 165, 260, 330]
         headers = ["#", "Name", "Score", "Dist", "Coins"]
         
         for col_x, hdr in zip(cols, headers):
