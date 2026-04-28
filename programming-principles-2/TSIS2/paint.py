@@ -1,6 +1,8 @@
 import pygame
 import math
 
+from datetime import datetime
+
 from utility import getColor
 from tools import *
 
@@ -29,6 +31,11 @@ def main():
     
     lastPos = None
     
+    # text tool state
+    textCursorPos = None 
+    textBuffer = ""
+    textFont = verdanaFont
+    
     while True:
         
         pressed = pygame.key.get_pressed()
@@ -47,6 +54,41 @@ def main():
                     return
                 if event.key == pygame.K_F4 and alt_held:
                     return
+                
+                # save canvas
+                if event.key == pygame.K_s and ctrl_held:
+                    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                    filename = f"canvas_{timestamp}.png"
+                    
+                    pygame.image.save(permCanvas, filename)
+                    print(f"Canvas saved as: {filename}")
+                    
+                    continue 
+                
+                # handle typing when text tool is executed
+                if tool == 'text' and textCursorPos is not None:
+                    if event.key == pygame.K_RETURN:
+                        
+                        # save text permanently onto canvas
+                        if textBuffer:
+                            renderText(permCanvas, textFont, textBuffer, textCursorPos, getColor(mode))
+                            
+                        textCursorPos = None
+                        textBuffer = ""
+                    elif event.key == pygame.K_ESCAPE:
+                        
+                        # cancel text entry
+                        textCursorPos = None
+                        textBuffer = ""
+                    elif event.key == pygame.K_BACKSPACE:
+                        textBuffer = textBuffer[:-1]
+                    else:
+                        
+                        # append printable characters
+                        if event.unicode and event.unicode.isprintable():
+                            textBuffer += event.unicode
+                    continue # prevent tool-switch while typing
+                
                 if event.key == pygame.K_ESCAPE:
                     return
             
@@ -73,6 +115,14 @@ def main():
                     tool = 'equilateral triangle'
                 elif event.key == pygame.K_8:
                     tool = 'rhombus'
+                elif event.key == pygame.K_9:
+                    tool = 'line'
+                elif event.key == pygame.K_0:
+                    tool = 'fill'
+                elif event.key == pygame.K_t:
+                    tool = 'text'
+                    textCursorPos = None
+                    textBuffer = ""
             
             # scroll to change tool radius
             if event.type == pygame.MOUSEWHEEL:
@@ -81,11 +131,19 @@ def main():
                 elif event.y < 0: # scrolling down shrinks radius
                     radius = max(1, radius - 1)
                     
-            SHAPE_TOOLS = ('rectangle', 'circle', 'square', 'right triangle', 'equilateral triangle', 'rhombus')
+            SHAPE_TOOLS = ('rectangle', 'circle', 'square', 'right triangle', 'equilateral triangle', 'rhombus', 'line')
             
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 if tool in SHAPE_TOOLS:
                     shapeStartPos = event.pos
+                elif tool == "fill":
+                    floodFill(permCanvas, event.pos, getColor(mode))
+                elif tool == "text":
+                    if textCursorPos is not None and textBuffer:
+                        renderText(permCanvas, textFont, textBuffer, textCursorPos, getColor(mode))
+                        
+                    textCursorPos = event.pos
+                    textBuffer = ""
                 else:
                     color = getColor(mode) if tool == 'brush' else BG_COLOR
                     
@@ -124,6 +182,12 @@ def main():
             if shapeStartPos is not None and mousePressed[0] and tool in SHAPE_TOOLS:
                 currentPos = pygame.mouse.get_pos()
                 drawShape(screen, tool, shapeStartPos, currentPos, mode, radius, preview = True)
+                
+        # live preview of typed text
+        if tool == 'text' and textCursorPos is not None:
+            previewStr = textBuffer + "|" # blinking cursor
+            
+            renderText(screen, textFont, previewStr, textCursorPos, getColor(mode))
         
         # info hud
         modeText = verdanaFont.render("Color: " + mode, True, (255, 255, 255), BG_COLOR)

@@ -85,6 +85,10 @@ def drawShape(surface, tool, start, end, mode, radius, preview = False):
             pts = [(cx, y0), (x1, cy), (cx, y1), (x0, cy)]
             
             pygame.draw.polygon(surface, color, pts, width)
+    elif tool == 'line':
+        lineWidth = max(1, radius)
+        
+        pygame.draw.line(surface, color, start, end, lineWidth)
             
 
 def drawLineBetween(surface, start, end, color, radius):
@@ -102,3 +106,38 @@ def drawLineBetween(surface, start, end, color, radius):
         y = int((1 - progress) * start[1] + progress * end[1])
         
         pygame.draw.circle(surface, color, (x, y), radius)
+        
+        
+def floodFill(surface, startPos, fillColor):
+    sizeW, sizeH = surface.get_size()
+    x0, y0 = startPos
+ 
+    # clamp to canvas
+    if not (0 <= x0 < sizeW and 0 <= y0 < sizeH):
+        return
+ 
+    targetColor = surface.get_at((x0, y0))[:3] # get pixel color and ignore alpha
+    fillColor3   = fillColor[:3] if len(fillColor) >= 3 else fillColor
+ 
+    if targetColor == fillColor3:
+        return # already the fill color, do nothing
+ 
+    queue = [(x0, y0)]
+    visited = set()
+    visited.add((x0, y0))
+ 
+    while queue:
+        x, y = queue.pop()
+        surface.set_at((x, y), fillColor)
+ 
+        for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+            if 0 <= nx < sizeW and 0 <= ny < sizeH and (nx, ny) not in visited:
+                if surface.get_at((nx, ny))[:3] == targetColor:
+                    visited.add((nx, ny))
+                    queue.append((nx, ny))
+        
+        
+def renderText(surface, font, text, pos, color):
+    textSurface = font.render(text, True, color)
+    
+    surface.blit(textSurface, pos)
