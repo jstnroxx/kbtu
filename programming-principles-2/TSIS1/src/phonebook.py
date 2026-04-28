@@ -392,3 +392,55 @@ def getPaginatedContacts(offset = 0, groupFilter = None, sortBy = "id", sortType
     finally:
         if connection:
             connection.close()
+            
+def addPhone(name, newPhone, newType):
+    try:
+        global connection
+        connection = connect()
+        
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT id FROM contacts WHERE name = %s", (name,))
+            existence = cursor.fetchone()
+            
+            if existence:
+                cursor.execute(readFromSQL("procedures.sql", "addPhone"), (existence, newPhone, newType))
+            else:
+                return "No contact with such name found."
+                    
+        connection.commit()
+        connection.close()
+        
+        return True
+            
+    except Exception as Err:
+        return Err
+        
+    finally:
+        if connection:
+            connection.close()
+            
+def moveGroup(name, newGroup):
+    try:
+        global connection
+        connection = connect()
+        
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT id FROM contacts WHERE name = %s", (name,))
+            existence = cursor.fetchone()
+            
+            if existence:
+                cursor.execute(readFromSQL("procedures.sql", "moveGroup"), (existence, newGroup))
+            else:
+                return "No contact with such name found."
+                    
+        connection.commit()
+        connection.close()
+        
+        return True
+            
+    except Exception as Err:
+        return Err
+        
+    finally:
+        if connection:
+            connection.close()

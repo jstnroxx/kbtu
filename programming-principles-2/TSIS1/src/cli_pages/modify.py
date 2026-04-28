@@ -10,6 +10,8 @@ def view():
     print("=" * 50)
     print("Commands:")
     print("    1 - Update contact name")
+    print("    2 - Add new contact phone")
+    print("    3 - Update contact group")
     print("    re - Return")
     print("=" * 50)
     
@@ -28,5 +30,26 @@ def view():
             response.view("Modify", "Successfully updated contact.")
         else:
             response.view("Modify", output)
+    elif command == "2":
+        name = input("\nEnter contact name to add phone: ").strip()
+        newPhone = input("Enter new phone number: ").strip()
+        newType = input("Enter phone type (home, work, mobile): ").strip()
+        
+        output = phonebook.addPhone(name, newPhone, newType)
+        
+        if output == True:
+            response.view("Modify", "Successfully updated contact phones.")
+        else:
+            response.view("Modify", output)
+    elif command == "3":
+        name = input("\nEnter contact name to move group: ").strip()
+        newGroup = input("Enter group to move contact into: ").strip()
+        
+        output = phonebook.moveGroup(name, newGroup)
+        
+        if output == True:
+            response.view("Modify", "Successfully moved contact.")
+        else:
+            response.view("Modify", output)      
     else:
         invalid.view()

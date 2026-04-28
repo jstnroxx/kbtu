@@ -156,3 +156,39 @@ END;
 $$ LANGUAGE plpgsql;
 
 SELECT * FROM get_all_contacts_full(10, %s, %s, %s, %s);
+
+--@addPhone
+CREATE OR REPLACE PROCEDURE add_phone(
+    p_contact_id INTEGER,
+    p_phone VARCHAR,
+    p_type VARCHAR
+) AS $$
+BEGIN
+    INSERT INTO phones(contact_id, phone, type) VALUES(p_contact_id, p_phone, p_type);
+END;
+$$ LANGUAGE plpgsql;
+
+CALL add_phone(%s, %s, %s)
+
+--@moveGroup
+CREATE OR REPLACE PROCEDURE move_to_group(
+    p_contact_id INTEGER,
+    p_group_name VARCHAR
+) 
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    new_group_id INTEGER;
+BEGIN
+    INSERT INTO groups(name)
+    VALUES(p_group_name)
+    ON CONFLICT(name) DO UPDATE SET name = EXCLUDED.name
+    RETURNING id INTO new_group_id;
+
+    UPDATE contacts 
+    SET group_id = new_group_id 
+    WHERE id = p_contact_id;
+END;
+$$;
+
+CALL move_to_group(%s, %s);
