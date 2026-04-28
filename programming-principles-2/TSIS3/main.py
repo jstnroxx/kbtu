@@ -18,7 +18,7 @@ from ui import (
     username_entry_screen,
 )
 
-# Initialization
+# Pygame init 
 pygame.init()
 pygame.mixer.init()
 
@@ -48,10 +48,10 @@ def run_game(settings: dict, username: str) -> dict:
     SPEED      = float(base_speed)
     SCORE      = 0
     COINS      = 0
-    DISTANCE   = 0 # in virtual "meters" (incremented each frame by speed)
+    DISTANCE   = 0.0 # accumulated as float; cast to int for display/saving
     pup_mgr    = PowerUpManager()
 
-    # Sprites
+    # Sprites 
     P1 = Player()
 
     # Variable number of enemies based on difficulty
@@ -75,7 +75,7 @@ def run_game(settings: dict, username: str) -> dict:
 
     clock = pygame.time.Clock()
 
-    # Game loop
+    # Game loop 
     while True:
         dt = clock.tick(FPS)
 
@@ -84,7 +84,7 @@ def run_game(settings: dict, username: str) -> dict:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.KEYDOWN and event.key == K_ESCAPE:
-                return {"score": 0, "distance": DISTANCE, "coins": COINS, "action": "menu"}
+                return {"score": 0, "distance": int(DISTANCE), "coins": COINS, "action": "menu"}
 
             # Spawn a new obstacle on timer
             if event.type == obstacle_timer:
@@ -112,17 +112,19 @@ def run_game(settings: dict, username: str) -> dict:
         shield_pup.move(effective_speed, P1.rect)
 
         # Distance accumulates proportional to speed each frame
-        DISTANCE += int(effective_speed * 0.05)
+        DISTANCE += effective_speed * 0.05
 
-        # Difficulty scaling
+        # Difficulty scaling 
         if COINS - last_scale_coins >= 3:
             last_scale_coins = COINS
             SPEED = base_speed + (COINS // 3) * 0.5
+            
             # Tighten obstacle spawn interval (floor: 800 ms)
             new_interval = max(800, obs_interval - (COINS // 3) * 100)
+            
             pygame.time.set_timer(obstacle_timer, new_interval)
 
-        # Draw
+        # Draw 
         DISPLAYSURF.blit(background, (0, 0))
 
         for entity in all_sprites:
@@ -131,12 +133,12 @@ def run_game(settings: dict, username: str) -> dict:
         # Shield ring around player
         P1.draw_shield_ring(DISPLAYSURF)
 
-        # HUD
+        # HUD 
         hud_y = 10
         lines = [
             f"Score:    {SCORE}",
             f"Coins:    {COINS}",
-            f"Dist:     {DISTANCE} m",
+            f"Dist:     {int(DISTANCE)} m",
             f"Speed:    {effective_speed:.1f}",
         ]
         for line in lines:
@@ -146,7 +148,7 @@ def run_game(settings: dict, username: str) -> dict:
 
         pup_mgr.draw_hud(DISPLAYSURF, hud_y + 4)
 
-        # Collisions: enemy / obstacle
+        # Collisions: enemy / obstacle 
         hit_enemy = pygame.sprite.spritecollideany(P1, enemies)
         hit_obs   = pygame.sprite.spritecollideany(P1, obstacles)
 
@@ -154,22 +156,24 @@ def run_game(settings: dict, username: str) -> dict:
             if pup_mgr.shield_active:
                 pup_mgr.consume_shield()
                 
-                # Make the colliding sprite temporarily invisible
+                # Move the colliding sprite off-screen so it can't re-trigger
+                # next frame while the player is still overlapping its rect
                 sprite = hit_enemy or hit_obs
+                sprite.rect.y = -200
                 sprite.image.set_alpha(0)
             else:
                 # Game over
                 play_sound(MEDIA_DIR / "crash.wav", settings)
                 pygame.time.set_timer(obstacle_timer, 0) # stop timer
 
-                final_score = calculate_score(COINS, DISTANCE, pup_mgr.bonus_pts)
-                add_entry(username, final_score, DISTANCE, COINS)
+                final_score = calculate_score(COINS, int(DISTANCE), pup_mgr.bonus_pts)
+                add_entry(username, final_score, int(DISTANCE), COINS)
 
-                action = game_over_screen(DISPLAYSURF, clock, final_score, DISTANCE, COINS)
-                return {"score": final_score, "distance": DISTANCE,
+                action = game_over_screen(DISPLAYSURF, clock, final_score, int(DISTANCE), COINS)
+                return {"score": final_score, "distance": int(DISTANCE),
                         "coins": COINS, "action": action}
 
-        # Collision: coin
+        # Collision: coin 
         coin_hit = pygame.sprite.spritecollideany(P1, coins)
         
         if coin_hit and coin_hit.collidable:
@@ -178,7 +182,7 @@ def run_game(settings: dict, username: str) -> dict:
             play_sound(MEDIA_DIR / "deposit.wav", settings)
             COINS += coin_hit.weight
 
-        # Collision: power-ups
+        #─ Collision: power-ups 
         pup_hit = pygame.sprite.spritecollideany(P1, powerups)
         
         if pup_hit and pup_hit.collidable:

@@ -230,5 +230,6 @@ class PowerUpManager:
         if self.active == "nitro":
             pct   = self.remaining / NitroPowerUp.DURATION
             bar_w = 120
-            pygame.draw.rect(surface, (80, 80, 80), (10, y_start + 22, bar_w, 8), border_radius=4)
-            pygame.draw.rect(surface, YELLOW, (10, y_start + 22, int(bar_w * pct), 8), border_radius=4)
+            
+            pygame.draw.rect(surface, (80, 80, 80), (10, y_start + 30, bar_w, 8), border_radius=4)
+            pygame.draw.rect(surface, YELLOW, (10, y_start + 30, int(bar_w * pct), 8), border_radius=4)

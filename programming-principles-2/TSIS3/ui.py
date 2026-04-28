@@ -132,13 +132,13 @@ def username_entry_screen(surface: pygame.Surface, clock: pygame.time.Clock) -> 
         surface.blit(title, title.get_rect(center=(surface.get_width() // 2, 180)))
 
         # Input box
-        box = pygame.Rect(60, 270, 280, 50)
+        box = pygame.Rect(60, 270, 280, 60)
         pygame.draw.rect(surface, PANEL, box, border_radius=6)
         pygame.draw.rect(surface, ACCENT, box, 2, border_radius=6)
 
         display_str = name + ("|" if cursor_visible else " ")
         name_surf = fonts["large"].render(display_str, True, WHITE)
-        surface.blit(name_surf, name_surf.get_rect(center=box.center))
+        surface.blit(name_surf, name_surf.get_rect(center=box.center).move(0, -3))
 
         hint = fonts["small"].render("Press ENTER to confirm", True, GRAY)
         surface.blit(hint, hint.get_rect(center=(surface.get_width() // 2, 350)))
