@@ -597,9 +597,10 @@ class Game:
     def _tick_powerup_field(self, pu):
         if pu is None:
             self._maybe_spawn_powerup_field()
-            return None
+            
+            return self.powerup_field
         if pygame.time.get_ticks() >= pu['expires']:
-            return None # expired — remove
+            return None # expired = remove
         return pu
 
     def _tick_powerup_effect(self):
