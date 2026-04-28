@@ -2,24 +2,48 @@ import pygame
 
 from game import Game
 
+WINDOW_WIDTH  = 640
+WINDOW_HEIGHT = 480
 FPS = 15
-WINDOWWIDTH = 640
-WINDOWHEIGHT = 480
 
 
-def main():
+def main() -> None:
     pygame.init()
-    fpsclock = pygame.time.Clock()
-    displaysurf = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
-    basicfont = pygame.font.Font('freesansbold.ttf', 18)
+    fpsclock    = pygame.time.Clock()
+    displaysurf = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+    basicfont   = pygame.font.Font('freesansbold.ttf', 18)
     pygame.display.set_caption('Snake')
 
-    game = Game(displaysurf, basicfont, WINDOWWIDTH, WINDOWHEIGHT, FPS)
+    game = Game(displaysurf, basicfont, WINDOW_WIDTH, WINDOW_HEIGHT, FPS)
 
-    game.show_start_screen(fpsclock)
+   
+    # Top-level screen loop
+    screen = 'menu'
+
     while True:
-        game.run(fpsclock)
-        game.show_game_over_screen(fpsclock)
+        if screen == 'menu':
+            action = game.show_main_menu(fpsclock)
+            if action == 'play':
+                screen = 'play'
+            elif action == 'leaderboard':
+                screen = 'leaderboard'
+            elif action == 'settings':
+                screen = 'settings'
+
+        elif screen == 'play':
+            score, level = game.run(fpsclock)
+            
+            # Pass score/level to the game-over screen
+            result = game.show_game_over_screen(fpsclock, score, level)
+            screen = 'play' if result == 'retry' else 'menu'
+
+        elif screen == 'leaderboard':
+            game.show_leaderboard_screen(fpsclock)
+            screen = 'menu'
+
+        elif screen == 'settings':
+            game.show_settings_screen(fpsclock)
+            screen = 'menu'
 
 
 if __name__ == '__main__':
