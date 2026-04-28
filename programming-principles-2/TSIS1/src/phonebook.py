@@ -371,14 +371,17 @@ def upsertContact(groupName, contactName, email, birthday, phone, phoneType):
         if connection:
             connection.close()
             
-def getPaginatedContacts(offset = 0):
+def getPaginatedContacts(offset = 0, groupFilter = None, sortBy = "id", sortType = "ASC"):
     try:
         global connection
         connection = connect()
         
         with connection.cursor() as cursor:
-            cursor.execute(readFromSQL("procedures.sql", "paginatedContacts"), (offset,))
-                    
+            if groupFilter == "": groupFilter = None
+            sortType = "ASC" if sortType == "asc" else "DESC"
+            
+            cursor.execute(readFromSQL("procedures.sql", "paginatedContacts"), (offset, groupFilter, sortBy, sortType))
+    
             return cursor.fetchall()
                     
         connection.commit()

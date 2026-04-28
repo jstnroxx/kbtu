@@ -24,6 +24,10 @@ def view():
     elif command == "1":
         name = input("\nEnter name: ").strip()
         
+        groupFilter = input("Filter group?: ").strip()
+        sortBy = input("Sort by? (name, birthday): ").strip().lower()
+        sortType = input("Sort type? (asc, desc): ").strip().lower()
+        
         output = phonebook.searchByName(name)
         
         formatted = ""
@@ -31,6 +35,14 @@ def view():
         if type(output) == type("abc"):    
             formatted = output
         elif len(output) > 0:
+            if groupFilter:
+                output = list(filter(lambda tple : tple[2] == groupFilter, output))
+                
+            if sortBy == "name":
+                output.sort(key = lambda tple : tple[0], reverse = True if sortType == "desc" else False)
+            elif sortBy == "birthday":
+                output.sort(key = lambda tple : tple[1], reverse = True if sortType == "desc" else False)
+            
             formatted = "\n".join(str(row) for row in output)
         else:
             formatted = "No data found."
@@ -39,6 +51,10 @@ def view():
     elif command == "2":
         phone = input("\nEnter phone prefix: ").strip()
         
+        groupFilter = input("Filter group?: ").strip()
+        sortBy = input("Sort by? (name, birthday): ").strip().lower()
+        sortType = input("Sort type? (asc, desc): ").strip().lower()
+        
         output = phonebook.searchByPhone(phone)
         
         formatted = ""
@@ -46,6 +62,14 @@ def view():
         if type(output) == type("abc"):    
             formatted = output
         elif len(output) > 0:
+            if groupFilter:
+                output = list(filter(lambda tple : tple[2] == groupFilter, output))
+                
+            if sortBy == "name":
+                output.sort(key = lambda tple : tple[0], reverse = True if sortType == "desc" else False)
+            elif sortBy == "birthday":
+                output.sort(key = lambda tple : tple[1], reverse = True if sortType == "desc" else False)
+            
             formatted = "\n".join(str(row) for row in output)
         else:
             formatted = "No data found."
@@ -54,6 +78,10 @@ def view():
     elif command == "3":
         pattern = input("\nEnter pattern: ").strip()
         
+        groupFilter = input("Filter group?: ").strip()
+        sortBy = input("Sort by? (name, birthday): ").strip().lower()
+        sortType = input("Sort type? (asc, desc): ").strip().lower()
+        
         output = phonebook.searchByPattern(pattern)
         
         formatted = ""
@@ -61,6 +89,14 @@ def view():
         if type(output) == type("abc"):    
             formatted = output
         elif len(output) > 0:
+            if groupFilter:
+                output = list(filter(lambda tple : tple[2] == groupFilter, output))
+                
+            if sortBy == "name":
+                output.sort(key = lambda tple : tple[0], reverse = True if sortType == "desc" else False)
+            elif sortBy == "birthday":
+                output.sort(key = lambda tple : tple[1], reverse = True if sortType == "desc" else False)
+            
             formatted = "\n".join(str(row) for row in output)
         else:
             formatted = "No data found."
@@ -69,8 +105,12 @@ def view():
     elif command == "4":
         offset = 0
         
+        groupFilter = input("\nFilter group?: ").strip()
+        sortBy = input("Sort by? (name, birthday): ").strip().lower()
+        sortType = input("Sort type? (asc, desc): ").strip().lower()
+        
         while True:
-            output = phonebook.getPaginatedContacts(offset)
+            output = phonebook.getPaginatedContacts(offset, groupFilter, sortBy, sortType)
              
             formatted = ""
         

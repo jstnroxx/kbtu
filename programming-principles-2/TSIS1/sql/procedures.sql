@@ -39,15 +39,17 @@ DELETE FROM contacts WHERE id = %s;
 DELETE FROM contacts USING phones WHERE phones.contact_id = contacts.id AND phones.id = %s;
 
 --@searchByPhone
-SELECT c.name, p.phone, p.type
+SELECT c.name, c.birthday, g.name, p.phone, p.type
 FROM contacts c
 INNER JOIN phones p ON c.id = p.contact_id
+INNER JOIN groups g ON g.id = c.group_id
 WHERE p.phone LIKE %s;
 
 --@searchByName
-SELECT c.name, p.phone, p.type
+SELECT c.name, c.birthday, g.name, p.phone, p.type
 FROM contacts c
 INNER JOIN phones p ON c.id = p.contact_id
+INNER JOIN groups g ON g.id = c.group_id
 WHERE c.name ILIKE %s;
 
 --@searchByPattern
@@ -55,9 +57,10 @@ CREATE OR REPLACE FUNCTION get_contacts_by_pattern(p text)
 RETURNS TABLE(contact_name VARCHAR, contact_email VARCHAR, phone_number VARCHAR) AS $$
 BEGIN
     RETURN QUERY 
-    SELECT DISTINCT c.name, c.email, ph.phone
+    SELECT DISTINCT c.name, c.birthday, g.name, c.email, ph.phone
     FROM contacts c
     LEFT JOIN phones ph ON c.id = ph.contact_id
+    INNER JOIN groups g ON g.id = c.group_id
     WHERE c.name  ILIKE '%%' || p || '%%'
        OR c.email  ILIKE '%%' || p || '%%'
        OR ph.phone ILIKE '%%' || p || '%%';
@@ -112,38 +115,44 @@ CALL upsert_contact_with_phone(%(groupName)s, %(contactName)s, %(email)s, %(birt
 --@paginatedContacts
 CREATE OR REPLACE FUNCTION get_all_contacts_full(
     p_limit INTEGER DEFAULT 10,
-    p_offset INTEGER DEFAULT 0
+    p_offset INTEGER DEFAULT 0,
+    g_filter VARCHAR DEFAULT NULL,
+    sort_by VARCHAR DEFAULT 'id',
+    sort_type VARCHAR DEFAULT 'ASC'
 )
 RETURNS TABLE(
     contact_id INTEGER,
     contact_name VARCHAR,
     contact_email VARCHAR,
     birthday DATE,
-    group_name VARCHAR,
+    group_name VARCHAR, 
     phone_number VARCHAR,
     phone_type VARCHAR
 ) AS $$
 BEGIN
     RETURN QUERY 
-    WITH all_data AS (
-        SELECT 
-            c.id,
-            c.name,
-            c.email,
-            c.birthday,
-            g.name AS g_name,
-            ph.phone,
-            ph.type
-        FROM contacts c
-        INNER JOIN groups g ON c.group_id = g.id
-        LEFT JOIN phones ph ON c.id = ph.contact_id
-    )
-    SELECT *
-    FROM all_data
-    ORDER BY id ASC
+    SELECT 
+        c.id,
+        c.name,
+        c.email,
+        c.birthday,
+        g.name, 
+        ph.phone,
+        ph.type
+    FROM contacts c
+    INNER JOIN groups g ON c.group_id = g.id
+    LEFT JOIN phones ph ON c.id = ph.contact_id
+    WHERE (g_filter IS NULL OR g.name ILIKE g_filter)
+    ORDER BY 
+        CASE WHEN sort_by = 'name' AND sort_type = 'ASC' THEN c.name END ASC,
+        CASE WHEN sort_by = 'name' AND sort_type = 'DESC' THEN c.name END DESC,
+        CASE WHEN sort_by = 'birthday' AND sort_type = 'ASC' THEN c.birthday END ASC,
+        CASE WHEN sort_by = 'birthday' AND sort_type = 'DESC' THEN c.birthday END DESC,
+        CASE WHEN sort_by = 'id' AND sort_type = 'ASC' THEN c.id END ASC,
+        CASE WHEN sort_by = 'id' AND sort_type = 'DESC' THEN c.id END DESC
     LIMIT p_limit
     OFFSET p_offset;
 END;
 $$ LANGUAGE plpgsql;
 
-SELECT * FROM get_all_contacts_full(10, %s);
+SELECT * FROM get_all_contacts_full(10, %s, %s, %s, %s);
