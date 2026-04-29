@@ -220,13 +220,13 @@ class Game:
                 else:
                     return self.score, self.level
 
-            # Advance worm 
+            # Advance snake 
             self.worm_coords.insert(0, new_head)
             grew = False
 
             #  Food collection 
             if new_head == {'x': self.food['x'], 'y': self.food['y']}:
-                grew        = True
+                grew = True
                 self.score += self.food['points']
                 
                 for _ in range(self.food['points'] - 1):
@@ -243,7 +243,7 @@ class Game:
             # Poison collection
             elif (self.poison
                   and new_head == {'x': self.poison['x'], 'y': self.poison['y']}):
-                grew = True # skip tail removal; we shorten manually below
+                grew = True # skip tail removal, shorten manually below
                 
                 for _ in range(2):
                     if len(self.worm_coords) > 1:
@@ -503,6 +503,7 @@ class Game:
     def _reset_worm(self):
         sx = random.randint(5, self.cell_width  - 6)
         sy = random.randint(5, self.cell_height - 6)
+        
         self.worm_coords = [
             {'x': sx,     'y': sy},
             {'x': sx - 1, 'y': sy},
@@ -514,6 +515,7 @@ class Game:
     def _rebuild_obstacles(self):
         if self.level < OBSTACLE_START_LEVEL:
             self.obstacles = []
+            
             return
         
         count    = (self.level - OBSTACLE_START_LEVEL + 1) * OBSTACLES_PER_LEVEL
@@ -525,12 +527,14 @@ class Game:
         for ddx in range(-3, 4):
             for ddy in range(-3, 4):
                 occupied.add((head['x'] + ddx, head['y'] + ddy))
+                
         candidates = [
             {'x': x, 'y': y}
             for x in range(self.cell_width)
             for y in range(self.cell_height)
             if (x, y) not in occupied
         ]
+        
         random.shuffle(candidates)
         self.obstacles = candidates[:count]
 

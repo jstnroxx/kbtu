@@ -182,7 +182,7 @@ def run_game(settings: dict, username: str) -> dict:
             play_sound(MEDIA_DIR / "deposit.wav", settings)
             COINS += coin_hit.weight
 
-        #─ Collision: power-ups 
+        # Collision: power-ups 
         pup_hit = pygame.sprite.spritecollideany(P1, powerups)
         
         if pup_hit and pup_hit.collidable:

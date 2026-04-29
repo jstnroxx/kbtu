@@ -171,7 +171,6 @@ class NitroPowerUp(_PowerUp):
 
 
 class ShieldPowerUp(_PowerUp):
-    """Absorbs one collision."""
     image_file = "Shield.png" 
     kind       = "shield"
 
